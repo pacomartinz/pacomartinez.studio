@@ -19,7 +19,9 @@ html {
 
 body {
     font-family: "Inter", sans-serif;
+
     background: #f1f0eb;
+
     color: #111111;
 }
 
@@ -27,6 +29,11 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+
+button {
+    font: inherit;
 }
 
 
@@ -82,16 +89,26 @@ a {
 .hero-video {
     position: absolute;
 
-    inset: 0;
+    top: 50%;
+    left: 50%;
 
-    width: 100%;
-    height: 100%;
+    /*
+       Hero vertical 9:16.
 
-    object-fit: cover;
+       Lo dimensionamos manualmente
+       para evitar el problema de object-fit
+       que vimos en Safari móvil.
+    */
 
-    object-position: center;
+    width: max(100vw, calc(100svh * 9 / 16));
+
+    height: max(100svh, calc(100vw * 16 / 9));
+
+    transform: translate(-50%, -50%);
 
     display: block;
+
+    border: 0;
 
     z-index: 0;
 }
@@ -200,9 +217,6 @@ a {
 }
 
 
-
-/* PACO MARTÍNEZ */
-
 .hero-content h1 {
     font-family: "Cormorant Garamond", serif;
 
@@ -220,9 +234,6 @@ a {
 }
 
 
-
-/* Director & Filmmaker */
-
 .hero-role {
     font-size: 13px;
 
@@ -234,9 +245,6 @@ a {
 }
 
 
-
-/* Sport · Lifestyle · Hospitality */
-
 .hero-fields {
     font-size: 11px;
 
@@ -245,9 +253,6 @@ a {
     letter-spacing: 0.04em;
 }
 
-
-
-/* Seville */
 
 .hero-location {
     font-size: 10px;
@@ -262,10 +267,310 @@ a {
 
 
 /* =========================================================
+   SHOWREEL
+========================================================= */
+
+.showreel-section {
+    background: #f1f0eb;
+
+    padding:
+        clamp(90px, 10vw, 160px)
+        36px
+        clamp(110px, 12vw, 190px);
+}
+
+
+
+/* =========================================================
+   SHOWREEL HEADER
+========================================================= */
+
+.showreel-header {
+    width: 100%;
+
+    max-width: 1500px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.section-label,
+.showreel-meta {
+    font-size: 10px;
+
+    line-height: 1.3;
+
+    letter-spacing: 0.06em;
+}
+
+
+.section-label {
+    font-weight: 500;
+
+    text-transform: uppercase;
+}
+
+
+.showreel-meta {
+    color: #6f6f69;
+}
+
+
+
+/* =========================================================
+   SHOWREEL PLAYER
+========================================================= */
+
+.showreel-player {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 1500px;
+
+    aspect-ratio: 16 / 9;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    background: #111111;
+}
+
+
+
+/* =========================================================
+   VIMEO
+========================================================= */
+
+.showreel-vimeo {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+
+    display: block;
+
+    z-index: 0;
+}
+
+
+
+/* =========================================================
+   SHOWREEL COVER
+========================================================= */
+
+.showreel-cover {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    border: 0;
+
+    background: #111111;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    z-index: 2;
+
+    opacity: 1;
+
+    transition:
+        opacity 0.45s ease,
+        visibility 0s linear 0s;
+}
+
+
+.showreel-cover:disabled {
+    cursor: wait;
+
+    opacity: 1;
+}
+
+
+.showreel-cover.is-ready {
+    cursor: pointer;
+}
+
+
+.showreel-cover img {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.8s ease;
+}
+
+
+.showreel-cover-shade {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.10);
+
+    z-index: 1;
+
+    transition: background 0.4s ease;
+}
+
+
+
+/* =========================================================
+   PLAY FILM
+========================================================= */
+
+.showreel-play-label {
+    position: absolute;
+
+    left: 24px;
+    bottom: 22px;
+
+    z-index: 2;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    letter-spacing: 0.08em;
+
+    line-height: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    transition: opacity 0.25s ease;
+}
+
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+@media (hover: hover) {
+
+    .showreel-cover:not(:disabled):hover img {
+        transform: scale(1.008);
+    }
+
+
+    .showreel-cover:not(:disabled):hover
+    .showreel-cover-shade {
+        background: rgba(0, 0, 0, 0.18);
+    }
+
+}
+
+
+
+/* =========================================================
+   SHOWREEL REPRODUCIENDO
+========================================================= */
+
+.showreel-player.is-playing .showreel-cover {
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.45s ease,
+        visibility 0s linear 0.45s;
+}
+
+
+
+/* =========================================================
+   PLAY / PAUSE
+========================================================= */
+
+.showreel-toggle {
+    position: absolute;
+
+    right: 18px;
+    bottom: 16px;
+
+    z-index: 3;
+
+    border: 0;
+
+    padding: 8px 10px;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    color: #ffffff;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 0.08em;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.showreel-player.is-playing .showreel-toggle {
+    opacity: 0.7;
+
+    pointer-events: auto;
+}
+
+
+.showreel-toggle:hover {
+    opacity: 1;
+
+    background: rgba(0, 0, 0, 0.55);
+}
+
+
+
+/* =========================================================
    MOBILE
 ========================================================= */
 
 @media (max-width: 768px) {
+
+    /* HERO */
 
     .hero {
         min-height: 600px;
@@ -328,6 +633,46 @@ a {
         font-size: 9px;
 
         margin-top: 4px;
+    }
+
+
+
+    /* SHOWREEL */
+
+    .showreel-section {
+        padding:
+            80px
+            16px
+            110px;
+    }
+
+
+    .showreel-header {
+        margin-bottom: 12px;
+    }
+
+
+    .section-label,
+    .showreel-meta {
+        font-size: 9px;
+    }
+
+
+    .showreel-play-label {
+        left: 14px;
+
+        bottom: 13px;
+
+        font-size: 9px;
+    }
+
+
+    .showreel-toggle {
+        right: 10px;
+
+        bottom: 9px;
+
+        font-size: 8px;
     }
 
 }

@@ -16,7 +16,7 @@
         content="Paco Martínez — Director & Filmmaker. Sport, Lifestyle & Hospitality. Seville, Spain."
     >
 
-    <!-- Precargamos el poster -->
+    <!-- Precargamos el poster del hero -->
     <link
         rel="preload"
         as="image"
@@ -27,15 +27,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
     <main>
+
 
         <!-- =================================================
              HERO
         ================================================== -->
 
         <section class="hero" id="top">
+
 
             <!-- HERO MEDIA -->
 
@@ -51,18 +54,18 @@
                     poster="images/hero-poster.jpg"
                     aria-hidden="true"
                 >
+
                     <source
                         src="video/hero.mp4"
                         type="video/mp4"
                     >
+
                 </video>
 
             </div>
 
 
-            <!-- =================================================
-                 HEADER
-            ================================================== -->
+            <!-- HEADER -->
 
             <header class="hero-header">
 
@@ -73,21 +76,30 @@
                     PACO MARTÍNEZ STUDIO
                 </a>
 
+
                 <nav
                     class="hero-nav"
                     aria-label="Navegación principal"
                 >
-                    <a href="#work">Work</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
+
+                    <a href="#work">
+                        Work
+                    </a>
+
+                    <a href="#about">
+                        About
+                    </a>
+
+                    <a href="#contact">
+                        Contact
+                    </a>
+
                 </nav>
 
             </header>
 
 
-            <!-- =================================================
-                 HERO CONTENT
-            ================================================== -->
+            <!-- HERO CONTENT -->
 
             <div class="hero-content">
 
@@ -110,24 +122,123 @@
 
             </div>
 
+
         </section>
+
+
+
+        <!-- =================================================
+             SHOWREEL
+        ================================================== -->
+
+        <section
+            class="showreel-section"
+            id="work"
+        >
+
+
+            <!-- SHOWREEL HEADER -->
+
+            <div class="showreel-header">
+
+                <p class="section-label">
+                    Showreel
+                </p>
+
+                <p class="showreel-meta">
+                    Selected films
+                </p>
+
+            </div>
+
+
+            <!-- SHOWREEL PLAYER -->
+
+            <div
+                class="showreel-player"
+                id="showreel-player"
+            >
+
+
+                <!-- VIMEO -->
+
+                <iframe
+                    id="showreel-vimeo"
+                    class="showreel-vimeo"
+                    src="https://player.vimeo.com/video/1218338116?controls=0&title=0&byline=0&portrait=0&playsinline=1"
+                    title="Paco Martínez — Showreel"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+
+
+                <!-- PORTADA PERSONALIZADA -->
+
+                <button
+                    class="showreel-cover"
+                    id="showreel-cover"
+                    type="button"
+                    aria-label="Reproducir showreel"
+                    disabled
+                >
+
+                    <img
+                        src="images/showreel-poster.jpg"
+                        alt=""
+                    >
+
+                    <span class="showreel-cover-shade"></span>
+
+                    <span
+                        class="showreel-play-label"
+                        id="showreel-play-label"
+                    >
+                        PLAY FILM
+                        <span aria-hidden="true">↗</span>
+                    </span>
+
+                </button>
+
+
+                <!-- CONTROL PLAY / PAUSE -->
+
+                <button
+                    class="showreel-toggle"
+                    id="showreel-toggle"
+                    type="button"
+                    aria-label="Pausar showreel"
+                >
+                    PAUSE
+                </button>
+
+
+            </div>
+
+        </section>
+
 
 
         <!-- =================================================
              FUTURAS SECCIONES
         ================================================== -->
 
-        <section id="work"></section>
+        <section id="about">
+        </section>
 
-        <section id="about"></section>
 
-        <section id="contact"></section>
+        <section id="contact">
+        </section>
+
 
     </main>
 
 
+    <!-- Vimeo Player API -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
+
     <!-- Nuestro JavaScript -->
     <script src="script.js"></script>
+
 
 </body>
 
