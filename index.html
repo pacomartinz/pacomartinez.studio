@@ -16,7 +16,7 @@
         content="Paco Martínez — Director & Filmmaker. Sport, Lifestyle & Hospitality. Seville, Spain."
     >
 
-    <!-- El navegador sabe desde el principio que esta imagen es prioritaria -->
+    <!-- Precargamos la imagen del hero -->
     <link
         rel="preload"
         as="image"
@@ -24,8 +24,10 @@
         fetchpriority="high"
     >
 
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 
 <body>
 
@@ -37,12 +39,20 @@
 
         <section class="hero" id="top">
 
+
+            <!-- =========================
+                 HERO MEDIA
+            ========================== -->
+
             <div class="hero-media">
 
                 <!--
-                    POSTER REAL.
-                    Se carga antes que Vimeo.
+                    POSTER
+
+                    Se muestra inmediatamente
+                    mientras Vimeo carga.
                 -->
+
                 <img
                     id="hero-poster"
                     class="hero-poster"
@@ -54,17 +64,20 @@
 
 
                 <!--
-                    VIMEO.
+                    VIMEO
 
-                    De momento NO cargamos Vimeo.
-                    La URL real está en data-src.
+                    El vídeo no empieza a cargar
+                    hasta que el poster ya está disponible.
+
+                    JavaScript sustituirá about:blank
+                    por la URL guardada en data-src.
                 -->
+
                 <iframe
                     id="hero-vimeo"
                     class="hero-vimeo"
                     src="about:blank"
                     data-src="https://player.vimeo.com/video/1218323438?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1"
-                    frameborder="0"
                     allow="autoplay; fullscreen; picture-in-picture"
                     title="Paco Martínez — Hero Film"
                 ></iframe>
@@ -72,26 +85,46 @@
             </div>
 
 
-            <!-- HEADER -->
+            <!-- =========================
+                 HEADER
+            ========================== -->
+
             <header class="hero-header">
 
-                <a class="hero-logo" href="#top">
+                <a
+                    class="hero-logo"
+                    href="#top"
+                >
                     PACO MARTÍNEZ STUDIO
                 </a>
+
 
                 <nav
                     class="hero-nav"
                     aria-label="Navegación principal"
                 >
-                    <a href="#work">Work</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
+
+                    <a href="#work">
+                        Work
+                    </a>
+
+                    <a href="#about">
+                        About
+                    </a>
+
+                    <a href="#contact">
+                        Contact
+                    </a>
+
                 </nav>
 
             </header>
 
 
-            <!-- HERO CONTENT -->
+            <!-- =========================
+                 HERO CONTENT
+            ========================== -->
+
             <div class="hero-content">
 
                 <h1>
@@ -99,13 +132,16 @@
                     MARTÍNEZ
                 </h1>
 
+
                 <p class="hero-role">
                     Director &amp; Filmmaker
                 </p>
 
+
                 <p class="hero-fields">
                     Sport · Lifestyle · Hospitality
                 </p>
+
 
                 <p class="hero-location">
                     Seville, Spain
@@ -116,126 +152,29 @@
         </section>
 
 
-        <!-- FUTURAS SECCIONES -->
+        <!-- =========================
+             FUTURAS SECCIONES
+        ========================== -->
 
-        <section id="work"></section>
+        <section id="work">
+        </section>
 
-        <section id="about"></section>
 
-        <section id="contact"></section>
+        <section id="about">
+        </section>
+
+
+        <section id="contact">
+        </section>
 
     </main>
 
 
-    <!-- VIMEO API -->
+    <!-- Vimeo Player API -->
     <script src="https://player.vimeo.com/api/player.js"></script>
 
-
-    <script>
-
-        const heroPoster = document.getElementById("hero-poster");
-        const heroIframe = document.getElementById("hero-vimeo");
-
-        let vimeoStarted = false;
-
-
-        function loadHeroVideo() {
-
-            if (vimeoStarted) return;
-
-            vimeoStarted = true;
-
-
-            /*
-            Vimeo SOLO empieza a cargarse
-            cuando el poster ya está disponible.
-            */
-
-            heroIframe.src = heroIframe.dataset.src;
-
-
-            const player = new Vimeo.Player(heroIframe);
-
-            let videoRevealed = false;
-
-
-            /*
-            No mostramos el iframe simplemente
-            cuando Vimeo dice "playing".
-
-            Esperamos hasta que el vídeo lleve
-            realmente unos frames reproduciéndose.
-            */
-
-            player.on("timeupdate", function(data) {
-
-                if (
-                    !videoRevealed &&
-                    data.seconds >= 0.7
-                ) {
-
-                    videoRevealed = true;
-
-
-                    /*
-                    Esperamos dos frames del navegador
-                    antes de hacer visible Vimeo.
-                    */
-
-                    requestAnimationFrame(function() {
-
-                        requestAnimationFrame(function() {
-
-                            heroIframe.classList.add("is-ready");
-
-                        });
-
-                    });
-
-                }
-
-            });
-
-        }
-
-
-        /*
-        Si el poster ya estaba en caché,
-        cargamos Vimeo inmediatamente.
-
-        Si no, esperamos al evento load.
-        */
-
-        if (
-            heroPoster.complete &&
-            heroPoster.naturalWidth > 0
-        ) {
-
-            loadHeroVideo();
-
-        } else {
-
-            heroPoster.addEventListener(
-                "load",
-                loadHeroVideo,
-                { once: true }
-            );
-
-        }
-
-
-        /*
-        Fallback por si hubiera algún error
-        cargando el poster.
-        */
-
-        heroPoster.addEventListener(
-            "error",
-            loadHeroVideo,
-            { once: true }
-        );
-
-    </script>
+    <!-- Nuestro JavaScript -->
+    <script src="script.js"></script>
 
 </body>
 
