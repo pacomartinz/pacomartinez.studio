@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,20 +19,31 @@
 
     <main>
 
-        <!-- HERO -->
+        <!-- =========================
+             HERO
+        ========================== -->
+
         <section class="hero" id="top">
 
-            <!-- Vimeo background video -->
+            <!-- VIDEO + POSTER -->
             <div class="hero-video">
+
+                <!-- Imagen visible mientras carga Vimeo -->
+                <div class="hero-poster"></div>
+
+                <!-- Vimeo -->
                 <iframe
+                    id="hero-vimeo"
                     src="https://player.vimeo.com/video/1218323438?background=1&autoplay=1&muted=1&loop=1&autopause=0"
                     frameborder="0"
                     allow="autoplay; fullscreen; picture-in-picture"
                     title="Paco Martínez — Hero Film"
                 ></iframe>
+
             </div>
 
-            <!-- Header -->
+
+            <!-- HEADER -->
             <header class="hero-header">
 
                 <a class="hero-logo" href="#top">
@@ -46,7 +58,8 @@
 
             </header>
 
-            <!-- Hero text -->
+
+            <!-- HERO CONTENT -->
             <div class="hero-content">
 
                 <h1>
@@ -70,13 +83,32 @@
 
         </section>
 
-        <!-- El resto de la web irá aquí -->
+
+        <!-- =========================
+             FUTURAS SECCIONES
+        ========================== -->
 
         <section id="work"></section>
+
         <section id="about"></section>
+
         <section id="contact"></section>
 
     </main>
 
+
+    <!-- VIMEO PLAYER API -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
+
+    <script>
+        const heroIframe = document.getElementById("hero-vimeo");
+        const heroPlayer = new Vimeo.Player(heroIframe);
+
+        heroPlayer.on("playing", function () {
+            heroIframe.classList.add("is-playing");
+        });
+    </script>
+
 </body>
+
 </html>
