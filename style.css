@@ -50,13 +50,11 @@ button {
     height: 100vh;
     height: 100svh;
 
-    min-height: 650px;
-
     overflow: hidden;
 
     color: #ffffff;
 
-    background: #e7e4dc;
+    background: #111111;
 }
 
 
@@ -75,7 +73,7 @@ button {
 
     overflow: hidden;
 
-    background: #e7e4dc;
+    background: #111111;
 
     z-index: 0;
 }
@@ -94,8 +92,12 @@ button {
 
     /*
        Hero vertical 9:16.
-       Evitamos object-fit para prevenir
-       el problema de zoom de Safari móvil.
+
+       Este es el sistema que nos funcionó
+       correctamente en Safari móvil.
+
+       No usamos object-fit: cover porque
+       nos provocaba el problema de zoom.
     */
 
     width: max(100vw, calc(100svh * 9 / 16));
@@ -420,16 +422,13 @@ button {
     height: 100%;
 
     /*
-       IMPORTANTE:
+       El poster llena por completo
+       el formato 16:9 del showreel.
 
-       Evitamos que una imagen vertical o de otra
-       proporción sea ampliada brutalmente.
-
-       Si showreel-poster.jpg es 16:9,
-       ocupará todo el reproductor perfectamente.
+       No habrá franjas negras laterales.
     */
 
-    object-fit: contain;
+    object-fit: cover;
 
     object-position: center;
 
@@ -549,13 +548,6 @@ button {
 
 @media (hover: hover) {
 
-    /*
-       No hacemos zoom sobre el poster.
-
-       Queremos mantener el encuadre exactamente
-       como está y evitar sensación de ampliación.
-    */
-
     .showreel-cover:not(:disabled):hover
     .showreel-cover-shade {
         background: rgba(0, 0, 0, 0.21);
@@ -652,12 +644,7 @@ button {
 
 @media (max-width: 768px) {
 
-    /* HERO */
-
-    .hero {
-        min-height: 600px;
-    }
-
+    /* HEADER */
 
     .hero-header {
         padding: 20px 18px;
@@ -678,6 +665,8 @@ button {
         font-size: 9px;
     }
 
+
+    /* HERO CONTENT */
 
     .hero-content {
         left: 18px;

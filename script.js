@@ -60,23 +60,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         .then(function () {
 
-
-            /*
-               Vimeo ya está preparado.
-               Activamos nuestra portada.
-            */
-
             showreelCover.disabled = false;
 
             showreelCover.classList.add(
                 "is-ready"
             );
-
-
-            /*
-               Obtenemos automáticamente
-               la duración real del vídeo.
-            */
 
             return player.getDuration();
 
@@ -117,12 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "click",
         function () {
 
-
-            /*
-               Mientras Vimeo comienza,
-               mantenemos visible la portada.
-            */
-
             showreelCenterLabel.textContent =
                 "LOADING";
 
@@ -153,12 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
     player.on(
         "playing",
         function () {
-
-
-            /*
-               Sólo retiramos el poster
-               cuando Vimeo está reproduciendo.
-            */
 
             showreelContainer.classList.add(
                 "is-playing"
@@ -246,7 +222,6 @@ document.addEventListener("DOMContentLoaded", function () {
     player.on(
         "ended",
         function () {
-
 
             showreelContainer.classList.remove(
                 "is-playing"
