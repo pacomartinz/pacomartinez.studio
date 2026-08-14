@@ -16,7 +16,16 @@
         content="Paco Martínez — Director & Filmmaker. Sport, Lifestyle & Hospitality. Seville, Spain."
     >
 
-    <!-- Precargamos la imagen del hero -->
+
+    <!-- Conectamos cuanto antes con Vimeo -->
+    <link
+        rel="preconnect"
+        href="https://player.vimeo.com"
+        crossorigin
+    >
+
+
+    <!-- Precargamos el poster del hero -->
     <link
         rel="preload"
         as="image"
@@ -24,8 +33,10 @@
         fetchpriority="high"
     >
 
+
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 
@@ -33,25 +44,20 @@
 
     <main>
 
-        <!-- =========================
+
+        <!-- =================================================
              HERO
-        ========================== -->
+        ================================================== -->
 
         <section class="hero" id="top">
 
 
-            <!-- =========================
-                 HERO MEDIA
-            ========================== -->
+            <!-- HERO MEDIA -->
 
             <div class="hero-media">
 
-                <!--
-                    POSTER
 
-                    Se muestra inmediatamente
-                    mientras Vimeo carga.
-                -->
+                <!-- POSTER -->
 
                 <img
                     id="hero-poster"
@@ -63,33 +69,27 @@
                 >
 
 
-                <!--
-                    VIMEO
-
-                    El vídeo no empieza a cargar
-                    hasta que el poster ya está disponible.
-
-                    JavaScript sustituirá about:blank
-                    por la URL guardada en data-src.
-                -->
+                <!-- VIMEO -->
 
                 <iframe
                     id="hero-vimeo"
                     class="hero-vimeo"
-                    src="about:blank"
-                    data-src="https://player.vimeo.com/video/1218323438?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1"
+                    src="https://player.vimeo.com/video/1218323438?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1"
                     allow="autoplay; fullscreen; picture-in-picture"
+                    loading="eager"
                     title="Paco Martínez — Hero Film"
                 ></iframe>
+
 
             </div>
 
 
-            <!-- =========================
+            <!-- =================================================
                  HEADER
-            ========================== -->
+            ================================================== -->
 
             <header class="hero-header">
+
 
                 <a
                     class="hero-logo"
@@ -118,14 +118,16 @@
 
                 </nav>
 
+
             </header>
 
 
-            <!-- =========================
+            <!-- =================================================
                  HERO CONTENT
-            ========================== -->
+            ================================================== -->
 
             <div class="hero-content">
+
 
                 <h1>
                     PACO<br>
@@ -147,14 +149,17 @@
                     Seville, Spain
                 </p>
 
+
             </div>
+
 
         </section>
 
 
-        <!-- =========================
+
+        <!-- =================================================
              FUTURAS SECCIONES
-        ========================== -->
+        ================================================== -->
 
         <section id="work">
         </section>
@@ -167,14 +172,18 @@
         <section id="contact">
         </section>
 
+
     </main>
+
 
 
     <!-- Vimeo Player API -->
     <script src="https://player.vimeo.com/api/player.js"></script>
 
+
     <!-- Nuestro JavaScript -->
     <script src="script.js"></script>
+
 
 </body>
 

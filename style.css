@@ -51,13 +51,6 @@ a {
 
     color: #ffffff;
 
-    /*
-       Fondo de emergencia.
-
-       Si el poster tarda unas décimas en cargar,
-       veremos este tono cálido en lugar de negro.
-    */
-
     background: #e7e4dc;
 }
 
@@ -119,8 +112,8 @@ a {
 
 
     /*
-       Vimeo mantiene proporción 16:9
-       pero siempre cubre toda la pantalla.
+       El vídeo mantiene proporción 16:9
+       y cubre toda la pantalla.
     */
 
     width: max(100vw, 177.78vh);
@@ -137,28 +130,28 @@ a {
 
 
     /*
-       Vimeo comienza oculto.
-
-       Mientras carga seguimos viendo
-       hero-poster.jpg.
+       Vimeo carga desde el primer momento,
+       pero permanece invisible mientras
+       prepara los primeros frames.
     */
 
     opacity: 0;
 
 
     /*
-       Vimeo está encima del poster.
+       Está encima del poster.
+       Cuando opacity pase a 1,
+       veremos el vídeo.
     */
 
     z-index: 1;
 
 
     /*
-       Cuando esté reproduciendo,
-       entra mediante un fundido rápido.
+       Fundido rápido entre poster y vídeo.
     */
 
-    transition: opacity 0.45s ease;
+    transition: opacity 0.35s ease;
 }
 
 
@@ -184,13 +177,6 @@ a {
 
     z-index: 2;
 
-
-    /*
-       Oscurecimiento muy ligero.
-
-       Ayuda a mantener legible la tipografía
-       sin matar la imagen.
-    */
 
     background:
         linear-gradient(

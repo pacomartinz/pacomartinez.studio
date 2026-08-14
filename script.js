@@ -1,130 +1,50 @@
-const heroPoster = document.getElementById("hero-poster");
 const heroIframe = document.getElementById("hero-vimeo");
 
-let vimeoStarted = false;
+
+// Creamos el reproductor de Vimeo
+const player = new Vimeo.Player(heroIframe);
 
 
-/* =========================================================
-   CARGAR VIMEO
-========================================================= */
-
-function loadHeroVideo() {
-
-    // Evitamos ejecutar la función más de una vez
-    if (vimeoStarted) return;
-
-    vimeoStarted = true;
+// Control para ejecutarlo sólo una vez
+let videoRevealed = false;
 
 
-    /*
-       Ahora que el poster está cargado,
-       permitimos que Vimeo empiece a cargar.
-    */
+/*
+   Vimeo y el poster están cargando simultáneamente.
 
-    heroIframe.src = heroIframe.dataset.src;
+   Mientras Vimeo todavía no tiene frames reproduciéndose,
+   seguimos viendo hero-poster.jpg.
 
+   En cuanto el tiempo del vídeo empieza a avanzar,
+   hacemos visible el iframe.
+*/
 
-    /*
-       Creamos el reproductor mediante
-       la Vimeo Player API.
-    */
+player.on("timeupdate", function(data) {
 
-    const player = new Vimeo.Player(heroIframe);
+    if (
+        !videoRevealed &&
+        data.seconds > 0
+    ) {
 
-
-    let videoRevealed = false;
-
-
-    /*
-       Esperamos a que el vídeo esté
-       reproduciéndose realmente.
-
-       No mostramos simplemente el iframe
-       cuando Vimeo dice "playing".
-
-       Esperamos hasta que el vídeo lleve
-       0.25 segundos avanzando.
-    */
-
-    player.on("timeupdate", function(data) {
-
-        if (
-            !videoRevealed &&
-            data.seconds >= 0.25
-        ) {
-
-            videoRevealed = true;
+        videoRevealed = true;
 
 
-            /*
-               Esperamos dos frames del navegador
-               para asegurarnos de que Vimeo
-               ya ha pintado la imagen.
-            */
+        /*
+           Esperamos dos frames de renderizado
+           para reducir la posibilidad de mostrar
+           el negro interno del reproductor.
+        */
+
+        requestAnimationFrame(function() {
 
             requestAnimationFrame(function() {
 
-                requestAnimationFrame(function() {
-
-                    heroIframe.classList.add("is-ready");
-
-                });
+                heroIframe.classList.add("is-ready");
 
             });
 
-        }
+        });
 
-    });
+    }
 
-}
-
-
-
-/* =========================================================
-   COMPROBAR POSTER
-========================================================= */
-
-/*
-   Si el navegador ya tiene el poster cargado
-   —por ejemplo porque estaba en caché—
-   empezamos inmediatamente.
-*/
-
-if (
-    heroPoster.complete &&
-    heroPoster.naturalWidth > 0
-) {
-
-    loadHeroVideo();
-
-} else {
-
-    /*
-       Si todavía no está cargado,
-       esperamos primero al poster.
-    */
-
-    heroPoster.addEventListener(
-        "load",
-        loadHeroVideo,
-        { once: true }
-    );
-
-}
-
-
-
-/* =========================================================
-   FALLBACK
-========================================================= */
-
-/*
-   Si por algún motivo hero-poster.jpg falla,
-   no queremos impedir que Vimeo se cargue.
-*/
-
-heroPoster.addEventListener(
-    "error",
-    loadHeroVideo,
-    { once: true }
-);
+});
