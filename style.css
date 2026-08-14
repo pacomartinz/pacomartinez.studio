@@ -49,18 +49,23 @@ a {
 
     overflow: hidden;
 
-    background: #111111;
-
     color: #ffffff;
+
+    /*
+    Ya no ponemos negro.
+    Si el poster tarda unas décimas,
+    aparece un tono cálido.
+    */
+    background: #e7e4dc;
 }
 
 
 
 /* =========================
-   VIDEO CONTAINER
+   HERO MEDIA
 ========================= */
 
-.hero-video {
+.hero-media {
     position: absolute;
 
     inset: 0;
@@ -70,9 +75,36 @@ a {
 
     overflow: hidden;
 
-    background: #111111;
+    /*
+    Color de emergencia antes
+    de que aparezca la imagen.
+    */
+    background-color: #e7e4dc;
 
     z-index: 0;
+}
+
+
+
+/* =========================
+   POSTER
+========================= */
+
+.hero-poster {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    z-index: 0;
+
+    display: block;
 }
 
 
@@ -81,17 +113,12 @@ a {
    VIMEO
 ========================= */
 
-.hero-video iframe {
+.hero-vimeo {
     position: absolute;
 
     top: 50%;
     left: 50%;
 
-
-    /*
-    Vimeo mantiene 16:9 mientras cubre
-    toda la pantalla.
-    */
 
     width: max(100vw, 177.78vh);
 
@@ -107,74 +134,31 @@ a {
 
 
     /*
-    IMPORTANTE:
-
-    Vimeo ya está visible desde el principio,
-    pero queda POR DEBAJO del poster.
-
-    Así puede cargar tranquilamente sin que
-    nosotros veamos su pantalla negra.
+    Vimeo está COMPLETAMENTE oculto
+    mientras carga.
     */
 
-    opacity: 1;
-
-    z-index: 0;
-}
-
-
-
-/* =========================
-   HERO POSTER
-========================= */
-
-.hero-poster {
-    position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-
-    background-image:
-        url("images/hero-poster.jpg");
-
-    background-size: cover;
-
-    background-position: center;
-
-    background-repeat: no-repeat;
+    opacity: 0;
 
 
     /*
-    El poster está POR ENCIMA de Vimeo.
+    Está encima del poster,
+    pero como opacity = 0
+    no podemos verlo.
     */
 
     z-index: 1;
 
 
-    opacity: 1;
-
-    visibility: visible;
-
-
-    /*
-    Fundido hacia el vídeo.
-    */
-
-    transition:
-        opacity 0.7s ease,
-        visibility 0s linear 0.7s;
+    transition: opacity 0.8s ease;
 }
 
 
 
-/* Se ejecuta cuando Vimeo ya está reproduciendo */
+/* Vimeo ya tiene vídeo reproduciéndose */
 
-.hero-poster.is-hidden {
-    opacity: 0;
-
-    visibility: hidden;
+.hero-vimeo.is-ready {
+    opacity: 1;
 }
 
 
@@ -196,11 +180,8 @@ a {
     background:
         linear-gradient(
             to bottom,
-
             rgba(0, 0, 0, 0.16) 0%,
-
             rgba(0, 0, 0, 0.02) 40%,
-
             rgba(0, 0, 0, 0.32) 100%
         );
 
@@ -222,9 +203,7 @@ a {
 
     width: 100%;
 
-
     padding: 28px 36px;
-
 
     display: flex;
 
@@ -232,10 +211,8 @@ a {
 
     justify-content: space-between;
 
-
     z-index: 3;
 }
-
 
 
 .hero-logo {
@@ -249,7 +226,6 @@ a {
 }
 
 
-
 .hero-nav {
     display: flex;
 
@@ -257,7 +233,6 @@ a {
 
     gap: 28px;
 }
-
 
 
 .hero-nav a {
@@ -269,7 +244,6 @@ a {
 
     transition: opacity 0.25s ease;
 }
-
 
 
 .hero-nav a:hover {
@@ -301,7 +275,6 @@ a {
         "Cormorant Garamond",
         serif;
 
-
     font-size:
         clamp(
             78px,
@@ -309,18 +282,13 @@ a {
             165px
         );
 
-
     font-weight: 400;
-
 
     line-height: 0.72;
 
-
     letter-spacing: -0.055em;
 
-
     text-transform: uppercase;
-
 
     margin-bottom: 32px;
 }
@@ -378,8 +346,6 @@ a {
     }
 
 
-    /* HEADER */
-
     .hero-header {
         padding: 20px 18px;
     }
@@ -399,9 +365,6 @@ a {
         font-size: 9px;
     }
 
-
-
-    /* CONTENT */
 
     .hero-content {
         left: 18px;

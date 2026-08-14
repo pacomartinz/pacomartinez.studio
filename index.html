@@ -16,16 +16,16 @@
         content="Paco Martínez — Director & Filmmaker. Sport, Lifestyle & Hospitality. Seville, Spain."
     >
 
-    <!-- Precarga del poster -->
+    <!-- El navegador sabe desde el principio que esta imagen es prioritaria -->
     <link
         rel="preload"
         as="image"
         href="images/hero-poster.jpg"
+        fetchpriority="high"
     >
 
     <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
@@ -37,25 +37,37 @@
 
         <section class="hero" id="top">
 
+            <div class="hero-media">
 
-            <!-- VIDEO -->
-            <div class="hero-video">
+                <!--
+                    POSTER REAL.
+                    Se carga antes que Vimeo.
+                -->
+                <img
+                    id="hero-poster"
+                    class="hero-poster"
+                    src="images/hero-poster.jpg"
+                    alt=""
+                    fetchpriority="high"
+                    loading="eager"
+                >
 
-                <!-- Vimeo carga por debajo -->
+
+                <!--
+                    VIMEO.
+
+                    De momento NO cargamos Vimeo.
+                    La URL real está en data-src.
+                -->
                 <iframe
                     id="hero-vimeo"
-                    src="https://player.vimeo.com/video/1218323438?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1"
+                    class="hero-vimeo"
+                    src="about:blank"
+                    data-src="https://player.vimeo.com/video/1218323438?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1"
                     frameborder="0"
                     allow="autoplay; fullscreen; picture-in-picture"
                     title="Paco Martínez — Hero Film"
                 ></iframe>
-
-
-                <!-- Poster permanece encima hasta que el vídeo está reproduciendo -->
-                <div
-                    class="hero-poster"
-                    id="hero-poster"
-                ></div>
 
             </div>
 
@@ -71,19 +83,9 @@
                     class="hero-nav"
                     aria-label="Navegación principal"
                 >
-
-                    <a href="#work">
-                        Work
-                    </a>
-
-                    <a href="#about">
-                        About
-                    </a>
-
-                    <a href="#contact">
-                        Contact
-                    </a>
-
+                    <a href="#work">Work</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
                 </nav>
 
             </header>
@@ -114,9 +116,7 @@
         </section>
 
 
-        <!-- =========================
-             FUTURAS SECCIONES
-        ========================== -->
+        <!-- FUTURAS SECCIONES -->
 
         <section id="work"></section>
 
@@ -127,51 +127,113 @@
     </main>
 
 
-    <!-- VIMEO PLAYER API -->
+    <!-- VIMEO API -->
     <script src="https://player.vimeo.com/api/player.js"></script>
 
 
     <script>
 
-        const heroIframe = document.getElementById("hero-vimeo");
         const heroPoster = document.getElementById("hero-poster");
+        const heroIframe = document.getElementById("hero-vimeo");
 
-        const heroPlayer = new Vimeo.Player(heroIframe);
+        let vimeoStarted = false;
 
-        let posterRemoved = false;
+
+        function loadHeroVideo() {
+
+            if (vimeoStarted) return;
+
+            vimeoStarted = true;
+
+
+            /*
+            Vimeo SOLO empieza a cargarse
+            cuando el poster ya está disponible.
+            */
+
+            heroIframe.src = heroIframe.dataset.src;
+
+
+            const player = new Vimeo.Player(heroIframe);
+
+            let videoRevealed = false;
+
+
+            /*
+            No mostramos el iframe simplemente
+            cuando Vimeo dice "playing".
+
+            Esperamos hasta que el vídeo lleve
+            realmente unos frames reproduciéndose.
+            */
+
+            player.on("timeupdate", function(data) {
+
+                if (
+                    !videoRevealed &&
+                    data.seconds >= 0.7
+                ) {
+
+                    videoRevealed = true;
+
+
+                    /*
+                    Esperamos dos frames del navegador
+                    antes de hacer visible Vimeo.
+                    */
+
+                    requestAnimationFrame(function() {
+
+                        requestAnimationFrame(function() {
+
+                            heroIframe.classList.add("is-ready");
+
+                        });
+
+                    });
+
+                }
+
+            });
+
+        }
 
 
         /*
-        Esperamos a que el vídeo esté REALMENTE avanzando.
+        Si el poster ya estaba en caché,
+        cargamos Vimeo inmediatamente.
 
-        Vimeo emite timeupdate cuando la reproducción
-        ya ha comenzado y el tiempo del vídeo está cambiando.
+        Si no, esperamos al evento load.
         */
 
-        heroPlayer.on("timeupdate", function(data) {
+        if (
+            heroPoster.complete &&
+            heroPoster.naturalWidth > 0
+        ) {
 
-            if (
-                !posterRemoved &&
-                data.seconds > 0.2
-            ) {
+            loadHeroVideo();
 
-                posterRemoved = true;
+        } else {
+
+            heroPoster.addEventListener(
+                "load",
+                loadHeroVideo,
+                { once: true }
+            );
+
+        }
 
 
-                /*
-                Pequeño margen adicional para asegurarnos
-                de que el navegador ya ha pintado el vídeo.
-                */
+        /*
+        Fallback por si hubiera algún error
+        cargando el poster.
+        */
 
-                setTimeout(function() {
-
-                    heroPoster.classList.add("is-hidden");
-
-                }, 350);
-
-            }
-
-        });
+        heroPoster.addEventListener(
+            "error",
+            loadHeroVideo,
+            { once: true }
+        );
 
     </script>
 
