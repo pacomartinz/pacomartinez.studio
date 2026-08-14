@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================================
-       PLAY DESDE LA PORTADA
+       PLAY DESDE PORTADA
     ========================================================= */
 
     showreelCover.addEventListener(
