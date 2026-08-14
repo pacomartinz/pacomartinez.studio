@@ -16,16 +16,7 @@
         content="Paco Martínez — Director & Filmmaker. Sport, Lifestyle & Hospitality. Seville, Spain."
     >
 
-
-    <!-- Conectamos cuanto antes con Vimeo -->
-    <link
-        rel="preconnect"
-        href="https://player.vimeo.com"
-        crossorigin
-    >
-
-
-    <!-- Precargamos el poster del hero -->
+    <!-- Precargamos el poster -->
     <link
         rel="preload"
         as="image"
@@ -33,17 +24,12 @@
         fetchpriority="high"
     >
 
-
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
     <main>
-
 
         <!-- =================================================
              HERO
@@ -51,35 +37,25 @@
 
         <section class="hero" id="top">
 
-
             <!-- HERO MEDIA -->
 
             <div class="hero-media">
 
-
-                <!-- POSTER -->
-
-                <img
-                    id="hero-poster"
-                    class="hero-poster"
-                    src="images/hero-poster.jpg"
-                    alt=""
-                    fetchpriority="high"
-                    loading="eager"
+                <video
+                    class="hero-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto"
+                    poster="images/hero-poster.jpg"
+                    aria-hidden="true"
                 >
-
-
-                <!-- VIMEO -->
-
-                <iframe
-                    id="hero-vimeo"
-                    class="hero-vimeo"
-                    src="https://player.vimeo.com/video/1218323438?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    loading="eager"
-                    title="Paco Martínez — Hero Film"
-                ></iframe>
-
+                    <source
+                        src="video/hero.mp4"
+                        type="video/mp4"
+                    >
+                </video>
 
             </div>
 
@@ -90,7 +66,6 @@
 
             <header class="hero-header">
 
-
                 <a
                     class="hero-logo"
                     href="#top"
@@ -98,26 +73,14 @@
                     PACO MARTÍNEZ STUDIO
                 </a>
 
-
                 <nav
                     class="hero-nav"
                     aria-label="Navegación principal"
                 >
-
-                    <a href="#work">
-                        Work
-                    </a>
-
-                    <a href="#about">
-                        About
-                    </a>
-
-                    <a href="#contact">
-                        Contact
-                    </a>
-
+                    <a href="#work">Work</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
                 </nav>
-
 
             </header>
 
@@ -128,62 +91,43 @@
 
             <div class="hero-content">
 
-
                 <h1>
                     PACO<br>
                     MARTÍNEZ
                 </h1>
 
-
                 <p class="hero-role">
                     Director &amp; Filmmaker
                 </p>
-
 
                 <p class="hero-fields">
                     Sport · Lifestyle · Hospitality
                 </p>
 
-
                 <p class="hero-location">
                     Seville, Spain
                 </p>
 
-
             </div>
 
-
         </section>
-
 
 
         <!-- =================================================
              FUTURAS SECCIONES
         ================================================== -->
 
-        <section id="work">
-        </section>
+        <section id="work"></section>
 
+        <section id="about"></section>
 
-        <section id="about">
-        </section>
-
-
-        <section id="contact">
-        </section>
-
+        <section id="contact"></section>
 
     </main>
 
 
-
-    <!-- Vimeo Player API -->
-    <script src="https://player.vimeo.com/api/player.js"></script>
-
-
     <!-- Nuestro JavaScript -->
     <script src="script.js"></script>
-
 
 </body>
 

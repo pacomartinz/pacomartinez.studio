@@ -19,9 +19,7 @@ html {
 
 body {
     font-family: "Inter", sans-serif;
-
     background: #f1f0eb;
-
     color: #111111;
 }
 
@@ -70,7 +68,7 @@ a {
 
     overflow: hidden;
 
-    background-color: #e7e4dc;
+    background: #e7e4dc;
 
     z-index: 0;
 }
@@ -78,10 +76,10 @@ a {
 
 
 /* =========================================================
-   HERO POSTER
+   HERO VIDEO
 ========================================================= */
 
-.hero-poster {
+.hero-video {
     position: absolute;
 
     inset: 0;
@@ -101,70 +99,6 @@ a {
 
 
 /* =========================================================
-   VIMEO VIDEO
-========================================================= */
-
-.hero-vimeo {
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-
-    /*
-       El vídeo mantiene proporción 16:9
-       y cubre toda la pantalla.
-    */
-
-    width: max(100vw, 177.78vh);
-
-    height: max(56.25vw, 100vh);
-
-
-    transform: translate(-50%, -50%);
-
-
-    border: 0;
-
-    pointer-events: none;
-
-
-    /*
-       Vimeo carga desde el primer momento,
-       pero permanece invisible mientras
-       prepara los primeros frames.
-    */
-
-    opacity: 0;
-
-
-    /*
-       Está encima del poster.
-       Cuando opacity pase a 1,
-       veremos el vídeo.
-    */
-
-    z-index: 1;
-
-
-    /*
-       Fundido rápido entre poster y vídeo.
-    */
-
-    transition: opacity 0.35s ease;
-}
-
-
-
-/* Vimeo ya está reproduciendo */
-
-.hero-vimeo.is-ready {
-    opacity: 1;
-}
-
-
-
-/* =========================================================
    HERO OVERLAY
 ========================================================= */
 
@@ -175,20 +109,15 @@ a {
 
     inset: 0;
 
-    z-index: 2;
-
+    z-index: 1;
 
     background:
         linear-gradient(
             to bottom,
-
             rgba(0, 0, 0, 0.16) 0%,
-
             rgba(0, 0, 0, 0.02) 40%,
-
             rgba(0, 0, 0, 0.32) 100%
         );
-
 
     pointer-events: none;
 }
@@ -207,9 +136,7 @@ a {
 
     width: 100%;
 
-
     padding: 28px 36px;
-
 
     display: flex;
 
@@ -217,10 +144,8 @@ a {
 
     justify-content: space-between;
 
-
-    z-index: 3;
+    z-index: 2;
 }
-
 
 
 .hero-logo {
@@ -234,7 +159,6 @@ a {
 }
 
 
-
 .hero-nav {
     display: flex;
 
@@ -242,7 +166,6 @@ a {
 
     gap: 28px;
 }
-
 
 
 .hero-nav a {
@@ -254,7 +177,6 @@ a {
 
     transition: opacity 0.25s ease;
 }
-
 
 
 .hero-nav a:hover {
@@ -274,28 +196,17 @@ a {
 
     bottom: 34px;
 
-    z-index: 3;
+    z-index: 2;
 }
 
 
 
-/* =========================================================
-   PACO MARTÍNEZ
-========================================================= */
+/* PACO MARTÍNEZ */
 
 .hero-content h1 {
-    font-family:
-        "Cormorant Garamond",
-        serif;
+    font-family: "Cormorant Garamond", serif;
 
-
-    font-size:
-        clamp(
-            78px,
-            10vw,
-            165px
-        );
-
+    font-size: clamp(78px, 10vw, 165px);
 
     font-weight: 400;
 
@@ -310,9 +221,7 @@ a {
 
 
 
-/* =========================================================
-   DIRECTOR & FILMMAKER
-========================================================= */
+/* Director & Filmmaker */
 
 .hero-role {
     font-size: 13px;
@@ -326,9 +235,7 @@ a {
 
 
 
-/* =========================================================
-   SPORT · LIFESTYLE · HOSPITALITY
-========================================================= */
+/* Sport · Lifestyle · Hospitality */
 
 .hero-fields {
     font-size: 11px;
@@ -340,9 +247,7 @@ a {
 
 
 
-/* =========================================================
-   LOCATION
-========================================================= */
+/* Seville */
 
 .hero-location {
     font-size: 10px;
@@ -367,8 +272,6 @@ a {
     }
 
 
-    /* HEADER */
-
     .hero-header {
         padding: 20px 18px;
     }
@@ -389,8 +292,6 @@ a {
     }
 
 
-    /* HERO CONTENT */
-
     .hero-content {
         left: 18px;
 
@@ -401,12 +302,7 @@ a {
 
 
     .hero-content h1 {
-        font-size:
-            clamp(
-                67px,
-                22vw,
-                100px
-            );
+        font-size: clamp(67px, 22vw, 100px);
 
         line-height: 0.76;
 
