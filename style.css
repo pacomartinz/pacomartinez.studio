@@ -19,7 +19,9 @@ html {
 
 body {
     font-family: "Inter", sans-serif;
+
     background: #f1f0eb;
+
     color: #111111;
 }
 
@@ -92,8 +94,8 @@ button {
 
     /*
        Hero vertical 9:16.
-       Evitamos object-fit para no tener
-       problemas de zoom en Safari móvil.
+       Evitamos object-fit para prevenir
+       el problema de zoom de Safari móvil.
     */
 
     width: max(100vw, calc(100svh * 9 / 16));
@@ -404,6 +406,11 @@ button {
 }
 
 
+
+/* =========================================================
+   SHOWREEL POSTER
+========================================================= */
+
 .showreel-cover img {
     position: absolute;
 
@@ -412,9 +419,23 @@ button {
     width: 100%;
     height: 100%;
 
-    object-fit: cover;
+    /*
+       IMPORTANTE:
+
+       Evitamos que una imagen vertical o de otra
+       proporción sea ampliada brutalmente.
+
+       Si showreel-poster.jpg es 16:9,
+       ocupará todo el reproductor perfectamente.
+    */
+
+    object-fit: contain;
+
+    object-position: center;
 
     display: block;
+
+    background: #111111;
 
     transition:
         transform 0.8s ease,
@@ -434,7 +455,7 @@ button {
 
     z-index: 1;
 
-    background: rgba(0, 0, 0, 0.16);
+    background: rgba(0, 0, 0, 0.14);
 
     transition: background 0.4s ease;
 }
@@ -470,7 +491,7 @@ button {
 
 
 
-/* Círculo */
+/* CÍRCULO */
 
 .showreel-play-circle {
     width: 64px;
@@ -494,17 +515,12 @@ button {
 
 
 
-/* Triángulo */
+/* TRIÁNGULO */
 
 .showreel-play-icon {
     font-size: 15px;
 
     line-height: 1;
-
-    /*
-       El triángulo ópticamente queda mejor
-       ligeramente desplazado a la derecha.
-    */
 
     transform: translateX(2px);
 }
@@ -533,14 +549,16 @@ button {
 
 @media (hover: hover) {
 
-    .showreel-cover:not(:disabled):hover img {
-        transform: scale(1.012);
-    }
+    /*
+       No hacemos zoom sobre el poster.
 
+       Queremos mantener el encuadre exactamente
+       como está y evitar sensación de ampliación.
+    */
 
     .showreel-cover:not(:disabled):hover
     .showreel-cover-shade {
-        background: rgba(0, 0, 0, 0.23);
+        background: rgba(0, 0, 0, 0.21);
     }
 
 
@@ -747,6 +765,7 @@ button {
 
     .showreel-toggle {
         right: 10px;
+
         bottom: 9px;
 
         font-size: 8px;

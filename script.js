@@ -31,7 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!window.Vimeo) {
 
-        console.error("Vimeo Player SDK no se ha cargado.");
+        console.error(
+            "Vimeo Player SDK no se ha cargado."
+        );
 
         showreelCenterLabel.textContent =
             "VIDEO UNAVAILABLE";
@@ -60,8 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /*
-               Permitimos interactuar con
-               nuestra portada personalizada.
+               Vimeo ya está preparado.
+               Activamos nuestra portada.
             */
 
             showreelCover.disabled = false;
@@ -73,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             /*
                Obtenemos automáticamente
-               la duración real del showreel.
+               la duración real del vídeo.
             */
 
             return player.getDuration();
@@ -117,8 +119,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /*
-               Feedback durante el pequeño
-               tiempo de arranque de Vimeo.
+               Mientras Vimeo comienza,
+               mantenemos visible la portada.
             */
 
             showreelCenterLabel.textContent =
@@ -155,8 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             /*
                Sólo retiramos el poster
-               cuando el vídeo ya está
-               reproduciéndose.
+               cuando Vimeo está reproduciendo.
             */
 
             showreelContainer.classList.add(
@@ -227,6 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
             showreelToggle.textContent =
                 "PLAY";
 
+
             showreelToggle.setAttribute(
                 "aria-label",
                 "Reproducir showreel"
@@ -245,10 +247,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "ended",
         function () {
 
-
-            /*
-               Volvemos a mostrar la portada.
-            */
 
             showreelContainer.classList.remove(
                 "is-playing"
