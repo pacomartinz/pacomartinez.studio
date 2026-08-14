@@ -1,30 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&display=swap');
+
+/* =========================
+   RESET
+========================= */
+
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: #f1f0eb;
+    color: #111111;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    min-height: 650px;
+    overflow: hidden;
+    color: #ffffff;
+    background: #111111;
+}
+
+
+/* =========================
+   VIMEO BACKGROUND
+========================= */
+
+.hero-video {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-video iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 100vw;
+    height: 56.25vw;
+
+    min-width: 177.78vh;
     min-height: 100vh;
+
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+
+/* Capa muy sutil para que el texto se lea mejor */
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.18) 0%,
+            rgba(0, 0, 0, 0.02) 40%,
+            rgba(0, 0, 0, 0.32) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.hero-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    padding: 28px 36px;
+
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
-    background: #111;
-    color: #fff;
-
-    font-family: Arial, sans-serif;
+    z-index: 3;
 }
 
-main {
-    text-align: center;
+.hero-logo {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
-h1 {
-    font-size: 64px;
-    margin: 0;
+.hero-nav {
+    display: flex;
+    gap: 28px;
 }
 
-p {
-    font-size: 30px;
-    opacity: 0.9;
+.hero-nav a {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+
+    transition: opacity 0.25s ease;
+}
+
+.hero-nav a:hover {
+    opacity: 0.6;
+}
+
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.hero-content {
+    position: absolute;
+
+    left: 36px;
+    bottom: 34px;
+
+    z-index: 3;
+}
+
+
+/* PACO MARTÍNEZ */
+
+.hero-content h1 {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(78px, 10vw, 165px);
+    font-weight: 400;
+
+    line-height: 0.72;
+    letter-spacing: -0.055em;
+
+    text-transform: uppercase;
+
+    margin-bottom: 32px;
+}
+
+
+/* Director & Filmmaker */
+
+.hero-role {
+    font-size: 13px;
+    line-height: 1.4;
+
+    margin-bottom: 6px;
+}
+
+
+/* Sport · Lifestyle · Hospitality */
+
+.hero-fields {
+    font-size: 11px;
+    line-height: 1.4;
+
+    letter-spacing: 0.04em;
+}
+
+
+/* Seville */
+
+.hero-location {
+    font-size: 10px;
+    line-height: 1.4;
+
+    margin-top: 5px;
+
+    opacity: 0.72;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .hero {
+        height: 100svh;
+        min-height: 600px;
+    }
+
+
+    /* HEADER */
+
+    .hero-header {
+        padding: 20px 18px;
+    }
+
+    .hero-logo {
+        font-size: 9px;
+    }
+
+    .hero-nav {
+        gap: 15px;
+    }
+
+    .hero-nav a {
+        font-size: 9px;
+    }
+
+
+    /* CONTENT */
+
+    .hero-content {
+        left: 18px;
+        right: 18px;
+        bottom: 25px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(67px, 22vw, 100px);
+
+        line-height: 0.76;
+
+        letter-spacing: -0.055em;
+
+        margin-bottom: 22px;
+    }
+
+    .hero-role {
+        font-size: 11px;
+        margin-bottom: 5px;
+    }
+
+    .hero-fields {
+        font-size: 9px;
+    }
+
+    .hero-location {
+        font-size: 9px;
+        margin-top: 4px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE PEQUEÑO
+========================= */
+
+@media (max-width: 430px) {
+
+    .hero-header {
+        padding: 18px 16px;
+    }
+
+    .hero-content {
+        left: 16px;
+        right: 16px;
+        bottom: 22px;
+    }
+
+    .hero-content h1 {
+        font-size: 20vw;
+    }
+
 }
