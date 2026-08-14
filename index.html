@@ -3,7 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Paco Martínez — Director & Filmmaker</title>
 
@@ -12,8 +16,16 @@
         content="Paco Martínez — Director & Filmmaker. Sport, Lifestyle & Hospitality. Seville, Spain."
     >
 
+    <!-- Precarga del poster -->
+    <link
+        rel="preload"
+        as="image"
+        href="images/hero-poster.jpg"
+    >
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 
 <body>
 
@@ -25,20 +37,25 @@
 
         <section class="hero" id="top">
 
-            <!-- VIDEO + POSTER -->
+
+            <!-- VIDEO -->
             <div class="hero-video">
 
-                <!-- Imagen visible mientras carga Vimeo -->
-                <div class="hero-poster"></div>
-
-                <!-- Vimeo -->
+                <!-- Vimeo carga por debajo -->
                 <iframe
                     id="hero-vimeo"
-                    src="https://player.vimeo.com/video/1218323438?background=1&autoplay=1&muted=1&loop=1&autopause=0"
+                    src="https://player.vimeo.com/video/1218323438?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1"
                     frameborder="0"
                     allow="autoplay; fullscreen; picture-in-picture"
                     title="Paco Martínez — Hero Film"
                 ></iframe>
+
+
+                <!-- Poster permanece encima hasta que el vídeo está reproduciendo -->
+                <div
+                    class="hero-poster"
+                    id="hero-poster"
+                ></div>
 
             </div>
 
@@ -50,10 +67,23 @@
                     PACO MARTÍNEZ STUDIO
                 </a>
 
-                <nav class="hero-nav" aria-label="Navegación principal">
-                    <a href="#work">Work</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
+                <nav
+                    class="hero-nav"
+                    aria-label="Navegación principal"
+                >
+
+                    <a href="#work">
+                        Work
+                    </a>
+
+                    <a href="#about">
+                        About
+                    </a>
+
+                    <a href="#contact">
+                        Contact
+                    </a>
+
                 </nav>
 
             </header>
@@ -100,13 +130,49 @@
     <!-- VIMEO PLAYER API -->
     <script src="https://player.vimeo.com/api/player.js"></script>
 
+
     <script>
+
         const heroIframe = document.getElementById("hero-vimeo");
+        const heroPoster = document.getElementById("hero-poster");
+
         const heroPlayer = new Vimeo.Player(heroIframe);
 
-        heroPlayer.on("playing", function () {
-            heroIframe.classList.add("is-playing");
+        let posterRemoved = false;
+
+
+        /*
+        Esperamos a que el vídeo esté REALMENTE avanzando.
+
+        Vimeo emite timeupdate cuando la reproducción
+        ya ha comenzado y el tiempo del vídeo está cambiando.
+        */
+
+        heroPlayer.on("timeupdate", function(data) {
+
+            if (
+                !posterRemoved &&
+                data.seconds > 0.2
+            ) {
+
+                posterRemoved = true;
+
+
+                /*
+                Pequeño margen adicional para asegurarnos
+                de que el navegador ya ha pintado el vídeo.
+                */
+
+                setTimeout(function() {
+
+                    heroPoster.classList.add("is-hidden");
+
+                }, 350);
+
+            }
+
         });
+
     </script>
 
 </body>

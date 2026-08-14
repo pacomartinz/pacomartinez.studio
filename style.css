@@ -11,20 +11,26 @@
     box-sizing: border-box;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
     font-family: "Inter", sans-serif;
+
     background: #f1f0eb;
+
     color: #111111;
 }
+
 
 a {
     color: inherit;
     text-decoration: none;
 }
+
 
 
 /* =========================
@@ -35,6 +41,7 @@ a {
     position: relative;
 
     width: 100%;
+
     height: 100vh;
     height: 100svh;
 
@@ -43,16 +50,19 @@ a {
     overflow: hidden;
 
     background: #111111;
+
     color: #ffffff;
 }
 
 
+
 /* =========================
-   VIDEO
+   VIDEO CONTAINER
 ========================= */
 
 .hero-video {
     position: absolute;
+
     inset: 0;
 
     width: 100%;
@@ -60,28 +70,11 @@ a {
 
     overflow: hidden;
 
-    z-index: 0;
-}
-
-
-/* =========================
-   POSTER
-========================= */
-
-.hero-poster {
-    position: absolute;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background-image: url("images/hero-poster.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: #111111;
 
     z-index: 0;
 }
+
 
 
 /* =========================
@@ -94,38 +87,96 @@ a {
     top: 50%;
     left: 50%;
 
+
     /*
-       Mantiene el vídeo 16:9 y hace que
-       siempre cubra toda la pantalla.
+    Vimeo mantiene 16:9 mientras cubre
+    toda la pantalla.
     */
 
     width: max(100vw, 177.78vh);
+
     height: max(56.25vw, 100vh);
 
+
     transform: translate(-50%, -50%);
+
 
     border: 0;
 
     pointer-events: none;
 
+
     /*
-       Inicialmente invisible.
-       Así nunca vemos el negro de Vimeo.
+    IMPORTANTE:
+
+    Vimeo ya está visible desde el principio,
+    pero queda POR DEBAJO del poster.
+
+    Así puede cargar tranquilamente sin que
+    nosotros veamos su pantalla negra.
     */
 
-    opacity: 0;
+    opacity: 1;
 
-    transition: opacity 0.8s ease;
+    z-index: 0;
+}
+
+
+
+/* =========================
+   HERO POSTER
+========================= */
+
+.hero-poster {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+
+    background-image:
+        url("images/hero-poster.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+
+    /*
+    El poster está POR ENCIMA de Vimeo.
+    */
 
     z-index: 1;
-}
 
 
-/* Cuando Vimeo empieza a reproducir */
-
-.hero-video iframe.is-playing {
     opacity: 1;
+
+    visibility: visible;
+
+
+    /*
+    Fundido hacia el vídeo.
+    */
+
+    transition:
+        opacity 0.7s ease,
+        visibility 0s linear 0.7s;
 }
+
+
+
+/* Se ejecuta cuando Vimeo ya está reproduciendo */
+
+.hero-poster.is-hidden {
+    opacity: 0;
+
+    visibility: hidden;
+}
+
 
 
 /* =========================
@@ -136,20 +187,27 @@ a {
     content: "";
 
     position: absolute;
+
     inset: 0;
 
     z-index: 2;
 
+
     background:
         linear-gradient(
             to bottom,
+
             rgba(0, 0, 0, 0.16) 0%,
+
             rgba(0, 0, 0, 0.02) 40%,
+
             rgba(0, 0, 0, 0.32) 100%
         );
 
+
     pointer-events: none;
 }
+
 
 
 /* =========================
@@ -164,18 +222,25 @@ a {
 
     width: 100%;
 
+
     padding: 28px 36px;
 
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
 
     z-index: 3;
 }
 
 
+
 .hero-logo {
     font-size: 11px;
+
     font-weight: 500;
 
     letter-spacing: 0.08em;
@@ -184,16 +249,20 @@ a {
 }
 
 
+
 .hero-nav {
     display: flex;
+
     align-items: center;
 
     gap: 28px;
 }
 
 
+
 .hero-nav a {
     font-size: 11px;
+
     font-weight: 400;
 
     letter-spacing: 0.04em;
@@ -202,9 +271,11 @@ a {
 }
 
 
+
 .hero-nav a:hover {
     opacity: 0.6;
 }
+
 
 
 /* =========================
@@ -215,40 +286,59 @@ a {
     position: absolute;
 
     left: 36px;
+
     bottom: 34px;
 
     z-index: 3;
 }
 
 
+
 /* PACO MARTÍNEZ */
 
 .hero-content h1 {
-    font-family: "Cormorant Garamond", serif;
+    font-family:
+        "Cormorant Garamond",
+        serif;
 
-    font-size: clamp(78px, 10vw, 165px);
+
+    font-size:
+        clamp(
+            78px,
+            10vw,
+            165px
+        );
+
+
     font-weight: 400;
+
 
     line-height: 0.72;
 
+
     letter-spacing: -0.055em;
+
 
     text-transform: uppercase;
 
+
     margin-bottom: 32px;
 }
+
 
 
 /* Director & Filmmaker */
 
 .hero-role {
     font-size: 13px;
+
     font-weight: 400;
 
     line-height: 1.4;
 
     margin-bottom: 6px;
 }
+
 
 
 /* Sport · Lifestyle · Hospitality */
@@ -262,6 +352,7 @@ a {
 }
 
 
+
 /* Seville */
 
 .hero-location {
@@ -273,6 +364,7 @@ a {
 
     opacity: 0.72;
 }
+
 
 
 /* =========================
@@ -308,17 +400,25 @@ a {
     }
 
 
-    /* HERO CONTENT */
+
+    /* CONTENT */
 
     .hero-content {
         left: 18px;
+
         right: 18px;
+
         bottom: 25px;
     }
 
 
     .hero-content h1 {
-        font-size: clamp(67px, 22vw, 100px);
+        font-size:
+            clamp(
+                67px,
+                22vw,
+                100px
+            );
 
         line-height: 0.76;
 
@@ -349,6 +449,7 @@ a {
 }
 
 
+
 /* =========================
    MOBILE PEQUEÑO
 ========================= */
@@ -362,6 +463,7 @@ a {
 
     .hero-content {
         left: 16px;
+
         right: 16px;
 
         bottom: 22px;
