@@ -19,9 +19,7 @@ html {
 
 body {
     font-family: "Inter", sans-serif;
-
     background: #f1f0eb;
-
     color: #111111;
 }
 
@@ -94,10 +92,8 @@ button {
 
     /*
        Hero vertical 9:16.
-
-       Lo dimensionamos manualmente
-       para evitar el problema de object-fit
-       que vimos en Safari móvil.
+       Evitamos object-fit para no tener
+       problemas de zoom en Safari móvil.
     */
 
     width: max(100vw, calc(100svh * 9 / 16));
@@ -393,15 +389,13 @@ button {
     opacity: 1;
 
     transition:
-        opacity 0.45s ease,
+        opacity 0.4s ease,
         visibility 0s linear 0s;
 }
 
 
 .showreel-cover:disabled {
     cursor: wait;
-
-    opacity: 1;
 }
 
 
@@ -422,18 +416,25 @@ button {
 
     display: block;
 
-    transition: transform 0.8s ease;
+    transition:
+        transform 0.8s ease,
+        filter 0.5s ease;
 }
 
+
+
+/* =========================================================
+   SOMBRA DEL POSTER
+========================================================= */
 
 .showreel-cover-shade {
     position: absolute;
 
     inset: 0;
 
-    background: rgba(0, 0, 0, 0.10);
-
     z-index: 1;
+
+    background: rgba(0, 0, 0, 0.16);
 
     transition: background 0.4s ease;
 }
@@ -441,52 +442,115 @@ button {
 
 
 /* =========================================================
-   PLAY FILM
+   PLAY CENTRAL
 ========================================================= */
 
-.showreel-play-label {
+.showreel-center {
     position: absolute;
 
-    left: 24px;
-    bottom: 22px;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
 
     z-index: 2;
 
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 15px;
+
     color: #ffffff;
 
-    font-size: 11px;
+    pointer-events: none;
+}
 
-    font-weight: 500;
 
-    letter-spacing: 0.08em;
 
-    line-height: 1;
+/* Círculo */
+
+.showreel-play-circle {
+    width: 64px;
+    height: 64px;
+
+    border: 1px solid rgba(255, 255, 255, 0.85);
+
+    border-radius: 50%;
 
     display: flex;
 
     align-items: center;
 
-    gap: 8px;
+    justify-content: center;
 
-    transition: opacity 0.25s ease;
+    transition:
+        transform 0.35s ease,
+        background 0.35s ease,
+        border-color 0.35s ease;
+}
+
+
+
+/* Triángulo */
+
+.showreel-play-icon {
+    font-size: 15px;
+
+    line-height: 1;
+
+    /*
+       El triángulo ópticamente queda mejor
+       ligeramente desplazado a la derecha.
+    */
+
+    transform: translateX(2px);
+}
+
+
+
+/* PLAY SHOWREEL */
+
+.showreel-center-label {
+    font-size: 10px;
+
+    font-weight: 500;
+
+    line-height: 1;
+
+    letter-spacing: 0.10em;
+
+    white-space: nowrap;
 }
 
 
 
 /* =========================================================
-   HOVER
+   HOVER DESKTOP
 ========================================================= */
 
 @media (hover: hover) {
 
     .showreel-cover:not(:disabled):hover img {
-        transform: scale(1.008);
+        transform: scale(1.012);
     }
 
 
     .showreel-cover:not(:disabled):hover
     .showreel-cover-shade {
-        background: rgba(0, 0, 0, 0.18);
+        background: rgba(0, 0, 0, 0.23);
+    }
+
+
+    .showreel-cover:not(:disabled):hover
+    .showreel-play-circle {
+        transform: scale(1.08);
+
+        background: rgba(255, 255, 255, 0.12);
+
+        border-color: #ffffff;
     }
 
 }
@@ -505,8 +569,8 @@ button {
     pointer-events: none;
 
     transition:
-        opacity 0.45s ease,
-        visibility 0s linear 0.45s;
+        opacity 0.4s ease,
+        visibility 0s linear 0.4s;
 }
 
 
@@ -550,7 +614,7 @@ button {
 
 
 .showreel-player.is-playing .showreel-toggle {
-    opacity: 0.7;
+    opacity: 0.65;
 
     pointer-events: auto;
 }
@@ -658,18 +722,31 @@ button {
     }
 
 
-    .showreel-play-label {
-        left: 14px;
+    .showreel-center {
+        gap: 11px;
+    }
 
-        bottom: 13px;
 
-        font-size: 9px;
+    .showreel-play-circle {
+        width: 52px;
+        height: 52px;
+    }
+
+
+    .showreel-play-icon {
+        font-size: 13px;
+    }
+
+
+    .showreel-center-label {
+        font-size: 8px;
+
+        letter-spacing: 0.09em;
     }
 
 
     .showreel-toggle {
         right: 10px;
-
         bottom: 9px;
 
         font-size: 8px;

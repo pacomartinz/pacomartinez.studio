@@ -39,9 +39,6 @@
 
         <section class="hero" id="top">
 
-
-            <!-- HERO MEDIA -->
-
             <div class="hero-media">
 
                 <video
@@ -82,17 +79,9 @@
                     aria-label="Navegación principal"
                 >
 
-                    <a href="#work">
-                        Work
-                    </a>
-
-                    <a href="#about">
-                        About
-                    </a>
-
-                    <a href="#contact">
-                        Contact
-                    </a>
+                    <a href="#work">Work</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
 
                 </nav>
 
@@ -122,7 +111,6 @@
 
             </div>
 
-
         </section>
 
 
@@ -145,8 +133,11 @@
                     Showreel
                 </p>
 
-                <p class="showreel-meta">
-                    Selected films
+                <p
+                    class="showreel-meta"
+                    id="showreel-duration"
+                >
+                    —
                 </p>
 
             </div>
@@ -189,18 +180,36 @@
 
                     <span class="showreel-cover-shade"></span>
 
-                    <span
-                        class="showreel-play-label"
-                        id="showreel-play-label"
-                    >
-                        PLAY FILM
-                        <span aria-hidden="true">↗</span>
+
+                    <!-- PLAY CENTRAL -->
+
+                    <span class="showreel-center">
+
+                        <span class="showreel-play-circle">
+
+                            <span
+                                class="showreel-play-icon"
+                                aria-hidden="true"
+                            >
+                                ▶
+                            </span>
+
+                        </span>
+
+
+                        <span
+                            class="showreel-center-label"
+                            id="showreel-center-label"
+                        >
+                            PLAY SHOWREEL
+                        </span>
+
                     </span>
 
                 </button>
 
 
-                <!-- CONTROL PLAY / PAUSE -->
+                <!-- PLAY / PAUSE DURANTE REPRODUCCIÓN -->
 
                 <button
                     class="showreel-toggle"
@@ -238,7 +247,6 @@
 
     <!-- Nuestro JavaScript -->
     <script src="script.js"></script>
-
 
 </body>
 

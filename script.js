@@ -14,25 +14,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const showreelCover =
         document.getElementById("showreel-cover");
 
-    const showreelPlayLabel =
-        document.getElementById("showreel-play-label");
+    const showreelCenterLabel =
+        document.getElementById("showreel-center-label");
 
     const showreelToggle =
         document.getElementById("showreel-toggle");
 
+    const showreelDuration =
+        document.getElementById("showreel-duration");
+
 
 
     /* =========================================================
-       COMPROBAMOS VIMEO
+       COMPROBAR VIMEO
     ========================================================= */
 
     if (!window.Vimeo) {
 
-        console.error(
-            "Vimeo Player SDK no se ha cargado."
-        );
+        console.error("Vimeo Player SDK no se ha cargado.");
 
-        showreelPlayLabel.textContent =
+        showreelCenterLabel.textContent =
             "VIDEO UNAVAILABLE";
 
         return;
@@ -41,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================================
-       CREAMOS EL PLAYER
+       CREAR PLAYER
     ========================================================= */
 
     const player =
@@ -50,24 +51,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================================
-       ESPERAMOS A QUE VIMEO ESTÉ PREPARADO
+       VIMEO READY
     ========================================================= */
 
     player.ready()
 
         .then(function () {
 
-            console.log(
-                "Showreel Vimeo preparado."
-            );
-
 
             /*
-               Hasta este momento el botón
-               estaba desactivado.
-
-               Ahora ya podemos permitir
-               que el usuario pulse PLAY FILM.
+               Permitimos interactuar con
+               nuestra portada personalizada.
             */
 
             showreelCover.disabled = false;
@@ -75,6 +69,30 @@ document.addEventListener("DOMContentLoaded", function () {
             showreelCover.classList.add(
                 "is-ready"
             );
+
+
+            /*
+               Obtenemos automáticamente
+               la duración real del showreel.
+            */
+
+            return player.getDuration();
+
+        })
+
+        .then(function (duration) {
+
+            const minutes =
+                Math.floor(duration / 60);
+
+            const seconds =
+                Math.floor(duration % 60)
+                    .toString()
+                    .padStart(2, "0");
+
+
+            showreelDuration.textContent =
+                `${minutes}:${seconds}`;
 
         })
 
@@ -84,9 +102,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Error preparando Vimeo:",
                 error
             );
-
-            showreelPlayLabel.textContent =
-                "VIDEO UNAVAILABLE";
 
         });
 
@@ -102,23 +117,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /*
-               Mostramos feedback mientras
-               Vimeo empieza a reproducir.
-
-               Importante:
-               todavía NO quitamos la portada.
+               Feedback durante el pequeño
+               tiempo de arranque de Vimeo.
             */
 
-            showreelPlayLabel.textContent =
+            showreelCenterLabel.textContent =
                 "LOADING";
 
-
-            /*
-               La reproducción ocurre como
-               consecuencia directa del clic,
-               por lo que puede comenzar
-               con sonido.
-            */
 
             player.play()
 
@@ -129,8 +134,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         error
                     );
 
-                    showreelPlayLabel.innerHTML =
-                        'PLAY FILM <span aria-hidden="true">↗</span>';
+                    showreelCenterLabel.textContent =
+                        "PLAY SHOWREEL";
 
                 });
 
@@ -140,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================================
-       VÍDEO REALMENTE REPRODUCIÉNDOSE
+       REPRODUCCIÓN REAL
     ========================================================= */
 
     player.on(
@@ -149,11 +154,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /*
-               Sólo ahora quitamos la portada.
-
-               Esto evita que aparezca
-               una pantalla negra mientras
-               Vimeo empieza.
+               Sólo retiramos el poster
+               cuando el vídeo ya está
+               reproduciéndose.
             */
 
             showreelContainer.classList.add(
@@ -176,13 +179,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================================
-       BOTÓN PLAY / PAUSE
+       PLAY / PAUSE
     ========================================================= */
 
     showreelToggle.addEventListener(
         "click",
         function () {
-
 
             player.getPaused()
 
@@ -203,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch(function (error) {
 
                     console.error(
-                        "Error comprobando el estado del vídeo:",
+                        "Error cambiando reproducción:",
                         error
                     );
 
@@ -225,7 +227,6 @@ document.addEventListener("DOMContentLoaded", function () {
             showreelToggle.textContent =
                 "PLAY";
 
-
             showreelToggle.setAttribute(
                 "aria-label",
                 "Reproducir showreel"
@@ -237,29 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================================
-       PLAYING
-    ========================================================= */
-
-    player.on(
-        "playing",
-        function () {
-
-            showreelToggle.textContent =
-                "PAUSE";
-
-
-            showreelToggle.setAttribute(
-                "aria-label",
-                "Pausar showreel"
-            );
-
-        }
-    );
-
-
-
-    /* =========================================================
-       FINAL DEL SHOWREEL
+       FINAL
     ========================================================= */
 
     player.on(
@@ -268,8 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /*
-               Recuperamos la portada
-               cuando termina el showreel.
+               Volvemos a mostrar la portada.
             */
 
             showreelContainer.classList.remove(
@@ -277,8 +255,8 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-            showreelPlayLabel.innerHTML =
-                'PLAY AGAIN <span aria-hidden="true">↗</span>';
+            showreelCenterLabel.textContent =
+                "PLAY AGAIN";
 
 
             player.setCurrentTime(0);
