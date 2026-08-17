@@ -224,7 +224,11 @@
 
 
 
-    <!-- =================================================
+
+
+
+
+        <!-- =================================================
      SELECTED WORK
 ================================================== -->
 
@@ -232,7 +236,10 @@
 
     <div class="selected-work-inner">
 
-        <!-- HEADER -->
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
 
         <div class="selected-work-header">
 
@@ -243,7 +250,10 @@
         </div>
 
 
-        <!-- PROJECT 01 -->
+
+        <!-- =================================================
+             PROJECT 01
+        ================================================== -->
 
         <article class="work-project">
 
@@ -286,13 +296,15 @@
                 </div>
 
 
-                <a
-                    class="work-link"
-                    href="#"
+                <button
+                    class="work-link work-film-trigger"
+                    type="button"
+                    data-vimeo-url="https://vimeo.com/1218892457"
+                    data-project="Spring / Summer 26"
                 >
                     Watch film
                     <span aria-hidden="true">→</span>
-                </a>
+                </button>
 
             </div>
 
@@ -300,7 +312,9 @@
 
 
 
-        <!-- PROJECT 02 -->
+        <!-- =================================================
+             PROJECT 02
+        ================================================== -->
 
         <article class="work-project">
 
@@ -357,7 +371,9 @@
 
 
 
-        <!-- PROJECT 03 -->
+        <!-- =================================================
+             PROJECT 03
+        ================================================== -->
 
         <article class="work-project">
 
@@ -427,11 +443,79 @@
 
         </article>
 
+
     </div>
 
 </section>
 
 
+
+<!-- =================================================
+     PROJECT FILM MODAL
+================================================== -->
+
+<dialog
+    class="film-modal"
+    id="film-modal"
+    aria-label="Project film"
+>
+
+    <div class="film-modal-inner">
+
+
+        <!-- MODAL HEADER -->
+
+        <div class="film-modal-header">
+
+            <p
+                class="film-modal-title"
+                id="film-modal-title"
+            >
+                Project Film
+            </p>
+
+
+            <button
+                class="film-modal-close"
+                id="film-modal-close"
+                type="button"
+            >
+                Close
+            </button>
+
+        </div>
+
+
+
+        <!-- VIDEO -->
+
+        <div class="film-modal-stage">
+
+            <div
+                class="film-modal-player"
+                id="film-modal-player"
+            ></div>
+
+
+            <button
+                class="film-modal-toggle"
+                id="film-modal-toggle"
+                type="button"
+                aria-label="Pausar vídeo"
+            >
+                Pause
+            </button>
+
+        </div>
+
+
+    </div>
+
+</dialog>
+
+
+
+   
 
         <!-- =================================================
              FUTURAS SECCIONES
