@@ -276,7 +276,7 @@ button {
     padding:
         clamp(90px, 10vw, 160px)
         36px
-        clamp(110px, 12vw, 190px);
+        clamp(60px, 6vw, 90px);
 }
 
 
@@ -622,11 +622,11 @@ button {
 ========================================================= */
 
 .selected-work {
-    background: #111111;
-    color: #ffffff;
+    background: #f1f0eb;
+    color: #111111;
 
     padding:
-        clamp(110px, 12vw, 180px)
+        clamp(40px, 4vw, 65px)
         36px
         clamp(130px, 14vw, 220px);
 }
@@ -691,7 +691,7 @@ button {
 .work-project {
     border-top:
         1px solid
-        rgba(255, 255, 255, 0.28);
+        rgba(17, 17, 17, 0.28);
 
     padding-top: 18px;
 
@@ -875,7 +875,7 @@ button {
 
     border-bottom:
         1px solid
-        rgba(255, 255, 255, 0.6);
+        rgba(17, 17, 17, 0.6);
 
     font-size: 10px;
 
@@ -1003,7 +1003,7 @@ button {
         padding:
             80px
             16px
-            110px;
+            30px;
     }
 
 
@@ -1053,7 +1053,7 @@ button {
 
 .selected-work {
     padding:
-        80px
+        35px
         16px
         110px;
 }
