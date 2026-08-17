@@ -617,6 +617,314 @@ button {
 }
 
 
+/* =========================================================
+   SELECTED WORK
+========================================================= */
+
+.selected-work {
+    background: #111111;
+    color: #ffffff;
+
+    padding:
+        clamp(110px, 12vw, 180px)
+        36px
+        clamp(130px, 14vw, 220px);
+}
+
+
+.selected-work-inner {
+    width: 100%;
+    max-width: 1500px;
+
+    margin: 0 auto;
+}
+
+
+
+/* =========================================================
+   SELECTED WORK HEADER
+========================================================= */
+
+.selected-work-header {
+    display: flex;
+
+    align-items: baseline;
+    justify-content: space-between;
+
+    margin-bottom: 64px;
+}
+
+
+.selected-work-header h2 {
+    font-family: "Inter", sans-serif;
+
+    font-size: clamp(18px, 1.6vw, 24px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+}
+
+
+.selected-work-header p {
+    font-size: 10px;
+
+    line-height: 1;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    opacity: 0.55;
+}
+
+
+
+/* =========================================================
+   PROJECT
+========================================================= */
+
+.work-project {
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.28);
+
+    padding-top: 18px;
+
+    margin-bottom:
+        clamp(90px, 10vw, 150px);
+}
+
+
+.work-project:last-child {
+    margin-bottom: 0;
+}
+
+
+
+/* =========================================================
+   PROJECT TOP
+========================================================= */
+
+.work-project-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+
+    font-size: 10px;
+
+    line-height: 1;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+.work-number {
+    opacity: 0.85;
+}
+
+
+.work-name {
+    text-align: right;
+
+    opacity: 0.85;
+}
+
+
+
+/* =========================================================
+   PROJECT MEDIA
+========================================================= */
+
+.work-media {
+    position: relative;
+
+    overflow: hidden;
+
+    background: #1b1b1b;
+}
+
+
+.work-media img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.7s
+        cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+
+/* VERTICAL 4:5 */
+
+.work-media--portrait {
+    width: min(58%, 800px);
+
+    aspect-ratio: 4 / 5;
+}
+
+
+
+/* PANORÁMICA 16:9 */
+
+.work-media--landscape {
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+}
+
+
+
+/* PROJECT 03 */
+
+.work-media-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(0, 0.85fr);
+
+    align-items: end;
+
+    gap: 24px;
+
+    width: min(78%, 1050px);
+}
+
+
+.work-media-grid .work-media--portrait {
+    width: 100%;
+}
+
+
+.work-media--detail {
+    aspect-ratio: 4 / 5;
+}
+
+
+
+/* =========================================================
+   PROJECT BOTTOM
+========================================================= */
+
+.work-project-bottom {
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-top: 18px;
+}
+
+
+.work-info h3 {
+    font-size: 13px;
+
+    font-weight: 400;
+
+    line-height: 1.4;
+
+    margin-bottom: 4px;
+}
+
+
+.work-info p {
+    font-size: 10px;
+
+    line-height: 1.4;
+
+    letter-spacing: 0.03em;
+
+    opacity: 0.62;
+}
+
+
+
+/* =========================================================
+   WATCH FILM
+========================================================= */
+
+.work-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+
+    padding-bottom: 3px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.6);
+
+    font-size: 10px;
+
+    line-height: 1;
+
+    letter-spacing: 0.04em;
+
+    transition:
+        opacity 0.25s ease;
+}
+
+
+.work-link span {
+    display: inline-block;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+
+/* =========================================================
+   SELECTED WORK HOVER
+========================================================= */
+
+@media (hover: hover) {
+
+    .work-project:hover
+    .work-media img {
+        transform: scale(1.015);
+    }
+
+
+    .work-link:hover {
+        opacity: 0.6;
+    }
+
+
+    .work-link:hover span {
+        transform: translateX(4px);
+    }
+
+}
+
+
+
+
+
+
 
 /* =========================================================
    MOBILE
@@ -740,6 +1048,88 @@ button {
 
         font-size: 8px;
     }
+
+    /* SELECTED WORK */
+
+.selected-work {
+    padding:
+        80px
+        16px
+        110px;
+}
+
+
+.selected-work-header {
+    margin-bottom: 46px;
+}
+
+
+.selected-work-header h2 {
+    font-size: 16px;
+
+    letter-spacing: 0.13em;
+}
+
+
+.selected-work-header p {
+    font-size: 8px;
+}
+
+
+.work-project {
+    padding-top: 12px;
+
+    margin-bottom: 70px;
+}
+
+
+.work-project-top {
+    margin-bottom: 11px;
+
+    font-size: 9px;
+}
+
+
+.work-media--portrait {
+    width: 100%;
+}
+
+
+.work-media-grid {
+    width: 100%;
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(0, 0.85fr);
+
+    gap: 16px;
+}
+
+
+.work-project-bottom {
+    margin-top: 12px;
+
+    gap: 15px;
+}
+
+
+.work-info h3 {
+    font-size: 11px;
+
+    margin-bottom: 3px;
+}
+
+
+.work-info p {
+    font-size: 9px;
+}
+
+
+.work-link {
+    font-size: 9px;
+
+    gap: 7px;
+}
 
 }
 
