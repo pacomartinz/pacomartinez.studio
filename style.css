@@ -300,7 +300,6 @@ button {
 }
 
 
-.section-label,
 .showreel-meta {
     font-size: 10px;
 
@@ -311,7 +310,9 @@ button {
 
 
 .section-label {
-    font-weight: 500;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(18px, 1.6vw, 24px);
+    font-weight: 200;
 
     text-transform: uppercase;
 }
@@ -660,11 +661,11 @@ button {
 
 
 .selected-work-header h2 {
-    font-family: "Inter", sans-serif;
+    font-family: "Cormorant Garamond", serif;
 
     font-size: clamp(18px, 1.6vw, 24px);
 
-    font-weight: 400;
+    font-weight: 200;
 
     line-height: 1;
 
