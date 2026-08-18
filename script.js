@@ -1,6 +1,152 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    
+    
     let showreelPlayer = null;
+
+        /* =========================================================
+       SITE MENU
+    ========================================================= */
+
+    const menuToggle =
+        document.getElementById("menu-toggle");
+
+    const siteMenu =
+        document.getElementById("site-menu");
+
+    const siteMenuClose =
+        document.getElementById("site-menu-close");
+
+    const siteMenuLinks =
+        siteMenu.querySelectorAll("a");
+
+
+    let menuReturnFocus = null;
+
+
+
+    /* =========================================================
+       ABRIR MENU
+    ========================================================= */
+
+    function openMenu() {
+
+        menuReturnFocus =
+            document.activeElement;
+
+
+        siteMenu.hidden =
+            false;
+
+
+        siteMenu.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+
+        document.body.classList.add(
+            "menu-open"
+        );
+
+
+        siteMenuClose.focus();
+
+    }
+
+
+
+    /* =========================================================
+       CERRAR MENU
+    ========================================================= */
+
+    function closeMenu() {
+
+        if (siteMenu.hidden) {
+            return;
+        }
+
+
+        siteMenu.hidden =
+            true;
+
+
+        siteMenu.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+
+        document.body.classList.remove(
+            "menu-open"
+        );
+
+
+        if (menuReturnFocus) {
+
+            menuReturnFocus.focus();
+
+            menuReturnFocus = null;
+
+        }
+
+    }
+
+
+
+    menuToggle.addEventListener(
+        "click",
+        openMenu
+    );
+
+
+    siteMenuClose.addEventListener(
+        "click",
+        closeMenu
+    );
+
+
+
+    siteMenuLinks.forEach(function (link) {
+
+        link.addEventListener(
+            "click",
+            closeMenu
+        );
+
+    });
+
+
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                !siteMenu.hidden
+            ) {
+
+                closeMenu();
+
+            }
+
+        }
+    );
+
+    
 
 
     /* =========================================================

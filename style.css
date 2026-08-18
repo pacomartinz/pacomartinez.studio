@@ -185,30 +185,190 @@ button {
 }
 
 
-.hero-nav {
+/* =========================================================
+   MENU TOGGLE
+========================================================= */
+
+.menu-toggle {
+    width: 28px;
+    height: 20px;
+
+    padding: 0;
+
+    border: 0;
+
     display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-    align-items: center;
+    gap: 6px;
 
-    gap: 28px;
+    background: none;
+
+    cursor: pointer;
 }
 
 
-.hero-nav a {
+.menu-toggle span {
+    display: block;
+
+    width: 100%;
+    height: 1px;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   SITE MENU
+========================================================= */
+
+.site-menu[hidden] {
+    display: none;
+}
+
+
+.site-menu {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    background: #111111;
+    color: #ffffff;
+}
+
+
+.site-menu-inner {
+    width: 100%;
+    height: 100%;
+
+    padding: 28px 36px 36px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* =========================================================
+   SITE MENU HEADER
+========================================================= */
+
+.site-menu-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    flex-shrink: 0;
+}
+
+
+.site-menu-logo {
     font-size: 11px;
 
+    font-weight: 500;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+.site-menu-close {
+    padding: 0;
+
+    border: 0;
+
+    background: none;
+    color: #ffffff;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 10px;
     font-weight: 400;
 
-    letter-spacing: 0.04em;
+    line-height: 1;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    opacity: 0.7;
 
     transition: opacity 0.25s ease;
 }
 
 
-.hero-nav a:hover {
-    opacity: 0.6;
+@media (hover: hover) {
+
+    .site-menu-close:hover {
+        opacity: 1;
+    }
+
 }
 
+
+
+/* =========================================================
+   SITE MENU NAVIGATION
+========================================================= */
+
+.site-menu-nav {
+    margin-top: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding-bottom:
+        clamp(10px, 3vw, 40px);
+}
+
+
+.site-menu-nav a {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size:
+        clamp(46px, 6vw, 92px);
+
+    font-weight: 400;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.025em;
+
+    text-transform: uppercase;
+
+    transition: opacity 0.25s ease;
+}
+
+
+@media (hover: hover) {
+
+    .site-menu-nav a:hover {
+        opacity: 0.5;
+    }
+
+}
+
+
+
+/* =========================================================
+   BODY CON MENÚ ABIERTO
+========================================================= */
+
+body.menu-open {
+    overflow: hidden;
+}
 
 
 /* =========================================================
@@ -954,14 +1114,42 @@ button {
     }
 
 
-    .hero-nav {
-        gap: 15px;
-    }
+    .menu-toggle {
+    width: 24px;
+
+    gap: 5px;
+}
 
 
-    .hero-nav a {
-        font-size: 9px;
-    }
+.site-menu-inner {
+    padding:
+        20px
+        18px
+        24px;
+}
+
+
+.site-menu-logo {
+    font-size: 9px;
+}
+
+
+.site-menu-close {
+    font-size: 9px;
+}
+
+
+.site-menu-nav {
+    padding-bottom: 20px;
+}
+
+
+.site-menu-nav a {
+    font-size:
+        clamp(42px, 13vw, 62px);
+
+    line-height: 0.98;
+}
 
 
     .hero-content {
