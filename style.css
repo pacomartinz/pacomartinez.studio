@@ -1263,7 +1263,7 @@ button {
 ========================================================= */
 
 .territory-content {
-    width: min(100%, 520px);
+    width: min(100%, 440px);
 
     margin:
         clamp(35px, 4vw, 60px)
@@ -1614,59 +1614,59 @@ body.film-modal-open {
 
     /* TERRITORY */
 
-.territory-section {
+    .territory-section {
     padding:
         60px
         16px
         100px;
-}
+    }
 
 
-.territory-inner {
+    .territory-inner {
     padding-top: 14px;
-}
+    }
 
 
-.territory-heading {
+    .territory-heading {
     margin-top: 45px;
-}
+    }
 
 
-.territory-number {
+    .territory-number {
     margin-bottom: 22px;
 
     font-size: 9px;
-}
+    }
 
 
-.territory-heading h2 {
+    .territory-heading h2 {
     font-size: clamp(46px, 15vw, 68px);
-}
+    }
 
 
-.territory-content {
+    .territory-content {
     margin-top: 40px;
-}
+    }
 
 
-.territory-gallery {
-    width: min(54vw, 230px);
-}
+    .territory-gallery {
+    width: min(42vw, 165px);
+    }
 
 
-.territory-copy {
+    .territory-copy {
     margin-top: 30px;
-}
+    }
 
 
-.territory-copy p {
+    .territory-copy p {
     font-size: 14px;
-}
+    }
 
 
-.territory-link {
+    .territory-link {
     font-size: 9px;
-}
+    }
 
 
 
