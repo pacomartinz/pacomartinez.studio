@@ -500,9 +500,13 @@ button {
 
 
 .showreel-play-icon {
-    font-size: 15px;
+    width: 0;
+    height: 0;
 
-    line-height: 1;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 11px solid currentColor;
+    
 
     transform: translateX(2px);
 }
