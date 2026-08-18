@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    let showreelPlayer = null;
+
 
     /* =========================================================
-       ELEMENTOS DEL SHOWREEL
+       SHOWREEL
     ========================================================= */
 
     const showreelIframe =
@@ -26,230 +28,222 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================================
-       COMPROBAR VIMEO
+       INICIALIZAR SHOWREEL
     ========================================================= */
 
-    if (!window.Vimeo) {
+    if (
+        window.Vimeo &&
+        showreelIframe &&
+        showreelContainer &&
+        showreelCover &&
+        showreelCenterLabel &&
+        showreelToggle &&
+        showreelDuration
+    ) {
 
-        console.error(
-            "Vimeo Player SDK no se ha cargado."
+        showreelPlayer =
+            new Vimeo.Player(showreelIframe);
+
+
+        showreelPlayer.ready()
+
+            .then(function () {
+
+                showreelCover.disabled = false;
+
+                showreelCover.classList.add(
+                    "is-ready"
+                );
+
+                return showreelPlayer.getDuration();
+
+            })
+
+            .then(function (duration) {
+
+                const minutes =
+                    Math.floor(duration / 60);
+
+                const seconds =
+                    Math.floor(duration % 60)
+                        .toString()
+                        .padStart(2, "0");
+
+
+                showreelDuration.textContent =
+                    `${minutes}:${seconds}`;
+
+            })
+
+            .catch(function (error) {
+
+                console.error(
+                    "Error preparando Vimeo:",
+                    error
+                );
+
+            });
+
+
+
+        /* =====================================================
+           PLAY DESDE PORTADA
+        ===================================================== */
+
+        showreelCover.addEventListener(
+            "click",
+            function () {
+
+                showreelCenterLabel.textContent =
+                    "LOADING";
+
+
+                showreelPlayer.play()
+
+                    .catch(function (error) {
+
+                        console.error(
+                            "Error reproduciendo Vimeo:",
+                            error
+                        );
+
+                        showreelCenterLabel.textContent =
+                            "PLAY SHOWREEL";
+
+                    });
+
+            }
         );
 
+
+
+        /* =====================================================
+           REPRODUCIENDO
+        ===================================================== */
+
+        showreelPlayer.on(
+            "playing",
+            function () {
+
+                showreelContainer.classList.add(
+                    "is-playing"
+                );
+
+
+                showreelToggle.textContent =
+                    "PAUSE";
+
+
+                showreelToggle.setAttribute(
+                    "aria-label",
+                    "Pausar showreel"
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           PLAY / PAUSE
+        ===================================================== */
+
+        showreelToggle.addEventListener(
+            "click",
+            function () {
+
+                showreelPlayer.getPaused()
+
+                    .then(function (paused) {
+
+                        if (paused) {
+                            return showreelPlayer.play();
+                        }
+
+                        return showreelPlayer.pause();
+
+                    })
+
+                    .catch(function (error) {
+
+                        console.error(
+                            "Error cambiando reproducción:",
+                            error
+                        );
+
+                    });
+
+            }
+        );
+
+
+
+        /* =====================================================
+           PAUSE
+        ===================================================== */
+
+        showreelPlayer.on(
+            "pause",
+            function () {
+
+                showreelToggle.textContent =
+                    "PLAY";
+
+
+                showreelToggle.setAttribute(
+                    "aria-label",
+                    "Reproducir showreel"
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           FINAL
+        ===================================================== */
+
+        showreelPlayer.on(
+            "ended",
+            function () {
+
+                showreelContainer.classList.remove(
+                    "is-playing"
+                );
+
+
+                showreelCenterLabel.textContent =
+                    "PLAY AGAIN";
+
+
+                showreelPlayer.setCurrentTime(0);
+
+            }
+        );
+
+    } else {
+
         if (showreelCenterLabel) {
+
             showreelCenterLabel.textContent =
                 "VIDEO UNAVAILABLE";
+
         }
 
-        return;
     }
 
 
 
     /* =========================================================
-       CREAR PLAYER DEL SHOWREEL
-    ========================================================= */
-
-    const player =
-        new Vimeo.Player(showreelIframe);
-
-
-
-    /* =========================================================
-       VIMEO READY
-    ========================================================= */
-
-    player.ready()
-
-        .then(function () {
-
-            showreelCover.disabled = false;
-
-            showreelCover.classList.add(
-                "is-ready"
-            );
-
-            return player.getDuration();
-
-        })
-
-        .then(function (duration) {
-
-            const minutes =
-                Math.floor(duration / 60);
-
-            const seconds =
-                Math.floor(duration % 60)
-                    .toString()
-                    .padStart(2, "0");
-
-
-            showreelDuration.textContent =
-                `${minutes}:${seconds}`;
-
-        })
-
-        .catch(function (error) {
-
-            console.error(
-                "Error preparando Vimeo:",
-                error
-            );
-
-        });
-
-
-
-    /* =========================================================
-       PLAY SHOWREEL DESDE PORTADA
-    ========================================================= */
-
-    showreelCover.addEventListener(
-        "click",
-        function () {
-
-            showreelCenterLabel.textContent =
-                "LOADING";
-
-
-            player.play()
-
-                .catch(function (error) {
-
-                    console.error(
-                        "Error reproduciendo Vimeo:",
-                        error
-                    );
-
-                    showreelCenterLabel.textContent =
-                        "PLAY SHOWREEL";
-
-                });
-
-        }
-    );
-
-
-
-    /* =========================================================
-       SHOWREEL — REPRODUCCIÓN REAL
-    ========================================================= */
-
-    player.on(
-        "playing",
-        function () {
-
-            showreelContainer.classList.add(
-                "is-playing"
-            );
-
-
-            showreelToggle.textContent =
-                "PAUSE";
-
-
-            showreelToggle.setAttribute(
-                "aria-label",
-                "Pausar showreel"
-            );
-
-        }
-    );
-
-
-
-    /* =========================================================
-       SHOWREEL — PLAY / PAUSE
-    ========================================================= */
-
-    showreelToggle.addEventListener(
-        "click",
-        function () {
-
-            player.getPaused()
-
-                .then(function (paused) {
-
-                    if (paused) {
-
-                        return player.play();
-
-                    } else {
-
-                        return player.pause();
-
-                    }
-
-                })
-
-                .catch(function (error) {
-
-                    console.error(
-                        "Error cambiando reproducción:",
-                        error
-                    );
-
-                });
-
-        }
-    );
-
-
-
-    /* =========================================================
-       SHOWREEL — PAUSE
-    ========================================================= */
-
-    player.on(
-        "pause",
-        function () {
-
-            showreelToggle.textContent =
-                "PLAY";
-
-
-            showreelToggle.setAttribute(
-                "aria-label",
-                "Reproducir showreel"
-            );
-
-        }
-    );
-
-
-
-    /* =========================================================
-       SHOWREEL — FINAL
-    ========================================================= */
-
-    player.on(
-        "ended",
-        function () {
-
-            showreelContainer.classList.remove(
-                "is-playing"
-            );
-
-
-            showreelCenterLabel.textContent =
-                "PLAY AGAIN";
-
-
-            player.setCurrentTime(0);
-
-        }
-    );
-
-
-
-    /* =========================================================
-       SELECTED WORK — ELEMENTOS DEL MODAL
+       SELECTED WORK — FILM MODAL
     ========================================================= */
 
     const filmModal =
         document.getElementById("film-modal");
 
-    const filmModalPlayerElement =
-        document.getElementById("film-modal-player");
+    const filmModalVideo =
+        document.getElementById("film-modal-video");
 
     const filmModalTitle =
         document.getElementById("film-modal-title");
@@ -264,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".work-film-trigger");
 
 
-    let projectPlayer = null;
+    let activeFilmTrigger = null;
 
 
 
@@ -272,174 +266,96 @@ document.addEventListener("DOMContentLoaded", function () {
        ABRIR FILM
     ========================================================= */
 
+    function openFilmModal(trigger) {
+
+        const videoSrc =
+            trigger.dataset.video;
+
+        const projectName =
+            trigger.dataset.project;
+
+
+        if (!videoSrc) {
+
+            console.error(
+                "No hay archivo de vídeo en este proyecto."
+            );
+
+            return;
+        }
+
+
+        activeFilmTrigger = trigger;
+
+
+        filmModalTitle.textContent =
+            projectName || "Project Film";
+
+
+        filmModalVideo.src =
+            videoSrc;
+
+
+        filmModal.hidden =
+            false;
+
+
+        filmModal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+
+        document.body.classList.add(
+            "film-modal-open"
+        );
+
+
+        filmModalClose.focus();
+
+
+        /*
+         * Pausamos el showreel si estaba reproduciéndose.
+         */
+
+        if (showreelPlayer) {
+
+            showreelPlayer.pause().catch(function () {
+
+                // No pasa nada si ya estaba pausado.
+
+            });
+
+        }
+
+
+        /*
+         * El play se inicia como respuesta directa
+         * al click del usuario.
+         */
+
+        filmModalVideo.play()
+
+            .catch(function (error) {
+
+                console.error(
+                    "No se pudo iniciar el vídeo:",
+                    error
+                );
+
+            });
+
+    }
+
+
+
     filmTriggers.forEach(function (trigger) {
 
         trigger.addEventListener(
             "click",
             function () {
 
-                const videoUrl =
-                    trigger.dataset.vimeoUrl;
-
-                const projectName =
-                    trigger.dataset.project;
-
-
-                if (!videoUrl) {
-
-                    console.error(
-                        "No hay URL de Vimeo en este proyecto."
-                    );
-
-                    return;
-                }
-
-
-
-                /* TÍTULO */
-
-                filmModalTitle.textContent =
-                    projectName;
-
-
-
-                /* ABRIR MODAL */
-
-                filmModal.showModal();
-
-                document.body.classList.add(
-                    "film-modal-open"
-                );
-
-
-
-                /* PAUSAR SHOWREEL SI ESTABA SONANDO */
-
-                player.pause().catch(function () {
-
-                    // No pasa nada si ya estaba pausado.
-
-                });
-
-
-
-                /* LIMPIAR PLAYER ANTERIOR */
-
-                if (projectPlayer) {
-
-                    projectPlayer.destroy();
-
-                    projectPlayer = null;
-
-                }
-
-
-                filmModalPlayerElement.innerHTML = "";
-
-
-
-                /* CREAR NUEVO PLAYER VIMEO */
-
-                projectPlayer =
-                    new Vimeo.Player(
-                        filmModalPlayerElement,
-                        {
-                            url: videoUrl,
-
-                            autoplay: true,
-
-                            controls: false,
-
-                            title: false,
-
-                            byline: false,
-
-                            portrait: false,
-
-                            responsive: true
-                        }
-                    );
-
-
-
-                /* PLAYER READY */
-
-                projectPlayer.ready()
-
-                    .then(function () {
-
-                        return projectPlayer.play();
-
-                    })
-
-                    .catch(function (error) {
-
-                        console.error(
-                            "Error cargando el vídeo del proyecto:",
-                            error
-                        );
-
-                    });
-
-
-
-                /* ESTADO PLAY */
-
-                projectPlayer.on(
-                    "play",
-                    function () {
-
-                        filmModalToggle.textContent =
-                            "PAUSE";
-
-
-                        filmModalToggle.setAttribute(
-                            "aria-label",
-                            "Pausar vídeo"
-                        );
-
-                    }
-                );
-
-
-
-                /* ESTADO PAUSE */
-
-                projectPlayer.on(
-                    "pause",
-                    function () {
-
-                        filmModalToggle.textContent =
-                            "PLAY";
-
-
-                        filmModalToggle.setAttribute(
-                            "aria-label",
-                            "Reproducir vídeo"
-                        );
-
-                    }
-                );
-
-
-
-                /* ESTADO FINAL */
-
-                projectPlayer.on(
-                    "ended",
-                    function () {
-
-                        filmModalToggle.textContent =
-                            "PLAY AGAIN";
-
-
-                        filmModalToggle.setAttribute(
-                            "aria-label",
-                            "Reproducir vídeo de nuevo"
-                        );
-
-                    }
-                );
+                openFilmModal(trigger);
 
             }
         );
@@ -449,79 +365,63 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================================
-       PROJECT FILM — PLAY / PAUSE
-    ========================================================= */
-
-    filmModalToggle.addEventListener(
-        "click",
-        function () {
-
-            if (!projectPlayer) {
-                return;
-            }
-
-
-            projectPlayer.getEnded()
-
-                .then(function (ended) {
-
-                    if (ended) {
-
-                        return projectPlayer.setCurrentTime(0)
-
-                            .then(function () {
-
-                                return projectPlayer.play();
-
-                            });
-
-                    }
-
-
-                    return projectPlayer.getPaused()
-
-                        .then(function (paused) {
-
-                            if (paused) {
-
-                                return projectPlayer.play();
-
-                            } else {
-
-                                return projectPlayer.pause();
-
-                            }
-
-                        });
-
-                })
-
-                .catch(function (error) {
-
-                    console.error(
-                        "Error cambiando reproducción del proyecto:",
-                        error
-                    );
-
-                });
-
-        }
-    );
-
-
-
-    /* =========================================================
        CERRAR FILM
     ========================================================= */
 
     function closeFilmModal() {
 
-        if (!filmModal.open) {
+        if (filmModal.hidden) {
             return;
         }
 
 
-        filmModal.close();
+        filmModalVideo.pause();
+
+
+        filmModalVideo.removeAttribute(
+            "src"
+        );
+
+
+        /*
+         * Fuerza al navegador a liberar el archivo cargado.
+         */
+
+        filmModalVideo.load();
+
+
+        filmModal.hidden =
+            true;
+
+
+        filmModal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
+        document.body.classList.remove(
+            "film-modal-open"
+        );
+
+
+        filmModalToggle.textContent =
+            "PAUSE";
+
+
+        filmModalToggle.setAttribute(
+            "aria-label",
+            "Pausar vídeo"
+        );
+
+
+        if (activeFilmTrigger) {
+
+            activeFilmTrigger.focus();
+
+            activeFilmTrigger = null;
+
+        }
 
     }
 
@@ -535,41 +435,127 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================================
-       LIMPIAR VÍDEO AL CERRAR
+       ESCAPE
     ========================================================= */
 
-    filmModal.addEventListener(
-        "close",
-        function () {
+    document.addEventListener(
+        "keydown",
+        function (event) {
 
-            document.body.classList.remove(
-                "film-modal-open"
-            );
+            if (
+                event.key === "Escape" &&
+                !filmModal.hidden
+            ) {
 
-
-            if (projectPlayer) {
-
-                projectPlayer.destroy()
-
-                    .catch(function (error) {
-
-                        console.error(
-                            "Error destruyendo player:",
-                            error
-                        );
-
-                    });
-
-
-                projectPlayer = null;
+                closeFilmModal();
 
             }
-
-
-            filmModalPlayerElement.innerHTML = "";
 
         }
     );
 
+
+
+    /* =========================================================
+       PLAY / PAUSE DEL FILM
+    ========================================================= */
+
+    function toggleFilmPlayback() {
+
+        if (filmModalVideo.ended) {
+
+            filmModalVideo.currentTime = 0;
+
+            filmModalVideo.play();
+
+            return;
+        }
+
+
+        if (filmModalVideo.paused) {
+
+            filmModalVideo.play();
+
+        } else {
+
+            filmModalVideo.pause();
+
+        }
+
+    }
+
+
+
+    filmModalToggle.addEventListener(
+        "click",
+        toggleFilmPlayback
+    );
+
+
+    filmModalVideo.addEventListener(
+        "click",
+        toggleFilmPlayback
+    );
+
+
+
+    /* =========================================================
+       ESTADOS DEL FILM
+    ========================================================= */
+
+    filmModalVideo.addEventListener(
+        "play",
+        function () {
+
+            filmModalToggle.textContent =
+                "PAUSE";
+
+
+            filmModalToggle.setAttribute(
+                "aria-label",
+                "Pausar vídeo"
+            );
+
+        }
+    );
+
+
+    filmModalVideo.addEventListener(
+        "pause",
+        function () {
+
+            if (filmModalVideo.ended) {
+                return;
+            }
+
+
+            filmModalToggle.textContent =
+                "PLAY";
+
+
+            filmModalToggle.setAttribute(
+                "aria-label",
+                "Reproducir vídeo"
+            );
+
+        }
+    );
+
+
+    filmModalVideo.addEventListener(
+        "ended",
+        function () {
+
+            filmModalToggle.textContent =
+                "PLAY AGAIN";
+
+
+            filmModalToggle.setAttribute(
+                "aria-label",
+                "Reproducir vídeo de nuevo"
+            );
+
+        }
+    );
 
 });

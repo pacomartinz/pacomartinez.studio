@@ -299,9 +299,9 @@
                 <button
                     class="work-link work-film-trigger"
                     type="button"
-                    data-vimeo-id="1218892457"
+                    data-video="video/project-01.mp4"
                     data-project="Spring / Summer 26"
-                >
+>
                     Watch film
                     <span aria-hidden="true">→</span>
                 </button>
@@ -450,7 +450,67 @@
 
 
 
+<!-- =================================================
+     PROJECT FILM MODAL
+================================================== -->
 
+<div
+    class="film-modal"
+    id="film-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="film-modal-title"
+    aria-hidden="true"
+    hidden
+>
+
+    <div class="film-modal-inner">
+
+        <div class="film-modal-header">
+
+            <p
+                class="film-modal-title"
+                id="film-modal-title"
+            >
+                Project Film
+            </p>
+
+
+            <button
+                class="film-modal-close"
+                id="film-modal-close"
+                type="button"
+            >
+                Close
+            </button>
+
+        </div>
+
+
+        <div class="film-modal-media">
+
+            <video
+                class="film-modal-video"
+                id="film-modal-video"
+                playsinline
+                preload="metadata"
+            ></video>
+
+
+            <button
+                class="film-modal-toggle"
+                id="film-modal-toggle"
+                type="button"
+                aria-label="Pausar vídeo"
+            >
+                PAUSE
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
    
 
@@ -469,7 +529,7 @@
     <!-- Vimeo Player API -->
     <script src="https://player.vimeo.com/api/player.js"></script>
 
-    <!-- JavaScript propio: sólo controla el showreel -->
+    <!-- JavaScript principal -->
     <script src="script.js"></script>
 
 </body>
