@@ -35,6 +35,27 @@ button {
 }
 
 
+/* =========================================================
+   SECTION TITLES
+========================================================= */
+
+.section-label,
+.selected-work-header h2,
+.territory-heading h2 {
+    font-family: "inter", sans-serif;
+
+    font-size: clamp(18px, 1.6vw, 24px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+}
+
+
 
 /* =========================================================
    HERO
@@ -309,14 +330,6 @@ button {
 }
 
 
-.section-label {
-    font-family: "Inter", sans-serif;
-    font-size: clamp(18px, 1.6vw, 24px);
-    font-weight: 200;
-    line-height: 1;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-}
 
 
 .showreel-meta {
@@ -661,19 +674,7 @@ button {
 }
 
 
-.selected-work-header h2 {
-    font-family: "Inter", sans-serif;
 
-    font-size: clamp(18px, 1.6vw, 24px);
-
-    font-weight: 300;
-
-    line-height: 1;
-
-    letter-spacing: 0.14em;
-
-    text-transform: uppercase;
-}
 
 
 .selected-work-header p {
@@ -1023,9 +1024,7 @@ button {
         font-size: 9px;
     }
 
-    .section-label {
-        font-size: 16px;
-    }
+   
 
 
     .showreel-center {
@@ -1069,11 +1068,6 @@ button {
 }
 
 
-.selected-work-header h2 {
-    font-size: 16px;
-
-    letter-spacing: 0.13em;
-}
 
 
 .selected-work-header p {
@@ -1241,20 +1235,7 @@ button {
 }
 
 
-.territory-heading h2 {
-    font-family: "Cormorant Garamond", serif;
 
-    font-size:
-        clamp(54px, 5.5vw, 88px);
-
-    font-weight: 400;
-
-    line-height: 0.9;
-
-    letter-spacing: -0.035em;
-
-    text-transform: uppercase;
-}
 
 
 
@@ -1279,7 +1260,7 @@ button {
 
 .territory-gallery {
     width:
-        clamp(180px, 18vw, 260px);
+        clamp(240px, 24vw, 360px);
 
     margin: 0 auto;
 }
@@ -1639,8 +1620,10 @@ body.film-modal-open {
     }
 
 
+    .section-label,
+    .selected-work-header h2,
     .territory-heading h2 {
-    font-size: clamp(46px, 15vw, 68px);
+        font-size: 16px;
     }
 
 
@@ -1650,7 +1633,7 @@ body.film-modal-open {
 
 
     .territory-gallery {
-    width: min(42vw, 165px);
+    width: min(72vw, 320px);
     }
 
 
