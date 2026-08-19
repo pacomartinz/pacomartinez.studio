@@ -178,16 +178,30 @@ button {
 
 .hero-logo {
     display: block;
-
-    width: 120px;
 }
 
 
-.hero-logo img {
-    width: 100%;
-    height: auto;
-
+.hero-logo-text {
     display: block;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    line-height: 1;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+.hero-logo-signature {
+    display: none;
+
+    width: 120px;
+    height: auto;
 }
 
 
@@ -1192,10 +1206,14 @@ body.menu-open {
         padding: 20px 18px;
     }
 
+    .hero-logo-text {
+    font-size: 11px;
+}
 
-    .hero-logo {
-        width: 72px;
-    }
+
+.hero-logo-signature {
+    width: 72px;
+}
 
 
     .desktop-nav {
