@@ -177,13 +177,17 @@ button {
 
 
 .hero-logo {
-    font-size: 11px;
+    display: block;
 
-    font-weight: 500;
+    width: 72px;
+}
 
-    letter-spacing: 0.08em;
 
-    text-transform: uppercase;
+.hero-logo img {
+    width: 100%;
+    height: auto;
+
+    display: block;
 }
 
 
@@ -1145,7 +1149,7 @@ body.menu-open {
 
 
     .hero-logo {
-        font-size: 9px;
+        width: 60px;
     }
 
 
