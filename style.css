@@ -179,7 +179,7 @@ button {
 .hero-logo {
     display: block;
 
-    width: 72px;
+    width: 120px;
 }
 
 
@@ -200,12 +200,12 @@ button {
 
     align-items: center;
 
-    gap: 28px;
+    gap: 50px;
 }
 
 
 .desktop-nav a {
-    font-size: 11px;
+    font-size: 20px;
 
     font-weight: 400;
 
@@ -278,8 +278,8 @@ button {
     height: 100vh;
     height: 100dvh;
 
-    background: #111111;
-    color: #ffffff;
+    background: #f1f0eb;
+    color: #111111;
 }
 
 
@@ -292,7 +292,6 @@ button {
     display: flex;
     flex-direction: column;
 }
-
 
 
 /* =========================================================
@@ -310,9 +309,12 @@ button {
 
 
 .site-menu-logo {
-    font-size: 11px;
+    font-family: "Inter", sans-serif;
 
+    font-size: 12px;
     font-weight: 500;
+
+    line-height: 1;
 
     letter-spacing: 0.08em;
 
@@ -326,12 +328,12 @@ button {
     border: 0;
 
     background: none;
-    color: #ffffff;
+    color: inherit;
 
     font-family: "Inter", sans-serif;
 
-    font-size: 10px;
-    font-weight: 400;
+    font-size: 12px;
+    font-weight: 500;
 
     line-height: 1;
 
@@ -341,20 +343,18 @@ button {
 
     cursor: pointer;
 
-    opacity: 0.7;
-
-    transition: opacity 0.25s ease;
+    transition:
+        opacity 0.25s ease;
 }
 
 
 @media (hover: hover) {
 
     .site-menu-close:hover {
-        opacity: 1;
+        opacity: 0.5;
     }
 
 }
-
 
 
 /* =========================================================
@@ -362,32 +362,61 @@ button {
 ========================================================= */
 
 .site-menu-nav {
-    margin-top: auto;
+    margin-top: 37vh;
+    margin-left: 38px;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: flex-start;
 
-    padding-bottom:
-        clamp(10px, 3vw, 40px);
+    gap: 32px;
+
+    padding-bottom: 0;
 }
 
 
 .site-menu-nav a {
-    font-family: "Cormorant Garamond", serif;
+    display: grid;
 
-    font-size:
-        clamp(46px, 6vw, 92px);
+    grid-template-columns:
+        26px
+        auto;
 
+    align-items: baseline;
+
+    column-gap: 18px;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 28px;
     font-weight: 400;
 
-    line-height: 0.95;
+    line-height: 1;
 
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
 
     text-transform: uppercase;
 
-    transition: opacity 0.25s ease;
+    transition:
+        opacity 0.25s ease;
+}
+
+
+.site-menu-number {
+    font-size: 14px;
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: 0;
+}
+
+
+.site-menu-text {
+    display: block;
 }
 
 
@@ -398,6 +427,12 @@ button {
     }
 
 }
+
+
+
+
+
+
 
 
 
@@ -1169,36 +1204,52 @@ body.menu-open {
 
 .site-menu-inner {
     padding:
-        20px
+        24px
         18px
-        24px;
+        28px;
 }
 
 
 .site-menu-logo {
-    font-size: 9px;
+    font-size: 11px;
 }
 
 
 .site-menu-close {
-    font-size: 9px;
+    font-size: 11px;
 }
 
 
 .site-menu-nav {
-    padding-bottom: 20px;
+    margin-top: 37vh;
+
+    margin-left: 38px;
+
+    gap: 32px;
+
+    padding-bottom: 0;
 }
 
 
 .site-menu-nav a {
-    font-size:
-        clamp(42px, 13vw, 62px);
+    grid-template-columns:
+        26px
+        auto;
 
-    line-height: 0.98;
+    column-gap: 18px;
+
+    font-size: 28px;
+
+    line-height: 1;
 }
 
 
-    .hero-content {
+.site-menu-number {
+    font-size: 14px;
+}
+
+
+.hero-content {
         left: 18px;
 
         right: 18px;
@@ -1207,7 +1258,7 @@ body.menu-open {
     }
 
 
-    .hero-content h1 {
+.hero-content h1 {
         font-size: clamp(67px, 22vw, 100px);
 
         line-height: 0.76;
