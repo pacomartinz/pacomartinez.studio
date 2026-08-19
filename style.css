@@ -42,7 +42,8 @@ button {
 .section-label,
 .selected-work-header h2,
 .visual-direction-label,
-.about-label {
+.about-label,
+.contact-label {
     font-family: "inter", sans-serif;
 
     font-size: clamp(20px, 1.8vw, 28px);
@@ -1863,6 +1864,156 @@ body.menu-open {
 
 
 
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-section {
+    background: #f1f0eb;
+    color: #111111;
+}
+
+
+.contact-inner {
+    width: 100%;
+    max-width: 1500px;
+
+    margin: 0 auto;
+
+    padding:
+        clamp(80px, 8vw, 125px)
+        36px
+        42px;
+}
+
+
+/* =========================================================
+   CONTACT STATEMENT
+========================================================= */
+
+.contact-statement {
+    margin-top:
+        clamp(65px, 7vw, 105px);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size:
+        clamp(46px, 4.8vw, 74px);
+
+    font-weight: 400;
+
+    line-height: 1.05;
+
+    letter-spacing: -0.03em;
+}
+
+
+/* =========================================================
+   CONTACT EMAIL
+========================================================= */
+
+.contact-email {
+    width: fit-content;
+
+    margin-top:
+        clamp(65px, 7vw, 100px);
+
+    display: flex;
+
+    align-items: center;
+
+    gap:
+        clamp(18px, 2vw, 30px);
+
+    color: #a66f46;
+
+    font-size:
+        clamp(22px, 2.1vw, 32px);
+
+    font-weight: 400;
+
+    line-height: 1.2;
+}
+
+
+.contact-email > span:first-child {
+    padding-bottom: 7px;
+
+    border-bottom:
+        1px solid
+        currentColor;
+}
+
+
+.contact-email > span:last-child {
+    font-size: 1.15em;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+@media (hover: hover) {
+
+    .contact-email:hover > span:last-child {
+        transform: translateX(5px);
+    }
+
+}
+
+
+/* =========================================================
+   CONTACT FOOTER
+========================================================= */
+
+.contact-footer {
+    margin-top:
+        clamp(130px, 14vw, 220px);
+}
+
+
+.contact-footer-line {
+    width: 100%;
+
+    border-top:
+        1px solid
+        rgba(17, 17, 17, 0.25);
+}
+
+
+.contact-footer-bottom {
+    padding-top: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.contact-footer-bottom p {
+    font-size: 11px;
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: 0.06em;
+
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /* =========================================================
    FILM MODAL
@@ -2255,6 +2406,62 @@ body.film-modal-open {
 .about-contact-link {
     font-size: 9px;
 }
+
+
+
+
+
+/* CONTACT */
+
+.contact-inner {
+    padding:
+        70px
+        16px
+        30px;
+}
+
+
+.contact-statement {
+    margin-top: 58px;
+
+    font-size:
+        clamp(38px, 10.5vw, 52px);
+
+    line-height: 1.02;
+}
+
+
+.contact-email {
+    margin-top: 58px;
+
+    gap: 14px;
+
+    font-size:
+        clamp(18px, 5vw, 24px);
+}
+
+
+.contact-email > span:first-child {
+    padding-bottom: 5px;
+}
+
+
+.contact-footer {
+    margin-top: 120px;
+}
+
+
+.contact-footer-bottom {
+    padding-top: 22px;
+}
+
+
+.contact-footer-bottom p {
+    font-size: 9px;
+}
+
+
+
 
 
 }
