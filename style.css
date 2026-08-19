@@ -41,10 +41,10 @@ button {
 
 .section-label,
 .selected-work-header h2,
-.territory-heading h2 {
+.visual-direction-label {
     font-family: "inter", sans-serif;
 
-    font-size: clamp(18px, 1.6vw, 24px);
+    font-size: clamp(20px, 1.8vw, 28px);
 
     font-weight: 400;
 
@@ -1407,114 +1407,100 @@ body.menu-open {
 
 
 
+
 /* =========================================================
-   TERRITORY
+   VISUAL DIRECTION
 ========================================================= */
 
-.territory-section {
-    background: #f1f0eb;
-    color: #111111;
-
-    padding:
-        clamp(90px, 9vw, 140px)
-        36px
-        clamp(110px, 12vw, 180px);
+.visual-direction {
+    background: #a88060;
+    color: #f1f0eb;
 }
 
 
-.territory-inner {
+/* =========================================================
+   VISUAL DIRECTION INNER
+========================================================= */
+
+.visual-direction-inner {
+    position: relative;
+
     width: 100%;
     max-width: 1500px;
 
     margin: 0 auto;
 
-    padding-top: 22px;
-
-    border-top:
-        1px solid
-        rgba(17, 17, 17, 0.28);
+    padding:
+        clamp(70px, 7vw, 110px)
+        36px
+        clamp(55px, 6vw, 90px);
 }
-
 
 
 /* =========================================================
-   TERRITORY HEADING
+   VISUAL DIRECTION INTRO
 ========================================================= */
 
-.territory-heading {
-    margin-top:
-        clamp(55px, 7vw, 100px);
+.visual-direction-intro {
+    position: relative;
+
+    z-index: 1;
 }
 
 
-.territory-number {
-    display: block;
-
+.visual-direction-label {
     margin-bottom:
-        clamp(24px, 3vw, 38px);
+        clamp(38px, 5vw, 70px);
 
-    font-size: 10px;
 
-    line-height: 1;
-
-    letter-spacing: 0.08em;
-
-    opacity: 0.55;
 }
 
 
+.visual-direction-intro h2 {
+    font-family: "Cormorant Garamond", serif;
 
+    font-size:
+        clamp(54px, 6.2vw, 94px);
 
+    font-weight: 400;
+
+    line-height: 0.92;
+
+    letter-spacing: -0.025em;
+}
 
 
 /* =========================================================
-   TERRITORY CONTENT
+   VISUAL DIRECTION GALLERY
 ========================================================= */
 
-.territory-content {
-    width: min(100%, 440px);
-
-    margin:
-        clamp(35px, 4vw, 60px)
-        auto
-        0;
-}
-
-
-
-/* =========================================================
-   TERRITORY GALLERY
-========================================================= */
-
-.territory-gallery {
-    width:
-        clamp(240px, 24vw, 360px);
-
-    margin: 0 auto;
-}
-
-
-.territory-image {
+.visual-direction-gallery {
     width: 100%;
 
-    aspect-ratio: 4 / 5.8;
+    margin-top:
+        clamp(30px, 4vw, 60px);
 
+    display: flex;
+
+    flex-direction: column;
+
+    gap:
+        clamp(18px, 2vw, 28px);
+}
+
+
+/* =========================================================
+   VISUAL DIRECTION IMAGES
+========================================================= */
+
+.visual-direction-image {
     overflow: hidden;
 
-    background: #d8d6d0;
-
-    border-bottom:
-        2px solid
-        #f1f0eb;
+    background: rgba(17, 17, 17, 0.08);
 }
 
 
-.territory-image:last-child {
-    border-bottom: 0;
-}
-
-
-.territory-image img {
+.visual-direction-image img {
     width: 100%;
     height: 100%;
 
@@ -1524,65 +1510,146 @@ body.menu-open {
 }
 
 
+/* Imagen superior derecha */
 
-/* =========================================================
-   TERRITORY COPY
-========================================================= */
+.visual-direction-image--01 {
+    width: min(68%, 900px);
 
-.territory-copy {
-    width: fit-content;
+    aspect-ratio: 16 / 9;
 
-    margin:
-        clamp(30px, 4vw, 50px)
-        auto
-        0;
-
-    text-align: left;
+    margin-left: auto;
 }
 
 
-.territory-copy p {
-    margin-bottom: 30px;
+/* Imagen grande izquierda */
+
+.visual-direction-image--02 {
+    width: min(84%, 1150px);
+
+    aspect-ratio: 16 / 9;
+
+    margin-right: auto;
+}
+
+
+/* Imagen inferior derecha */
+
+.visual-direction-image--03 {
+    width: min(70%, 940px);
+
+    aspect-ratio: 16 / 9;
+
+    margin-left: auto;
+}
+
+
+/* =========================================================
+   VISUAL DIRECTION NOTE
+========================================================= */
+
+.visual-direction-note {
+    position: absolute;
+
+    left: 36px;
+    bottom:
+        clamp(62px, 6vw, 94px);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 13px;
+
+    line-height: 1.2;
+
+    opacity: 0.9;
+}
+
+
+/* =========================================================
+   VISUAL DIRECTION CTA
+========================================================= */
+
+.visual-direction-cta {
+    background: #f1f0eb;
+    color: #111111;
+}
+
+
+.visual-direction-cta-inner {
+    width: 100%;
+    max-width: 1500px;
+
+    margin: 0 auto;
+
+    padding:
+        clamp(42px, 5vw, 70px)
+        36px
+        clamp(55px, 6vw, 90px);
+}
+
+
+.visual-direction-cta-title {
+    margin-bottom:
+        clamp(32px, 4vw, 50px);
+
+    font-family: "Cormorant Garamond", serif;
 
     font-size:
-        clamp(14px, 1.15vw, 17px);
+        clamp(38px, 4vw, 64px);
 
     font-weight: 400;
 
-    line-height: 1.55;
+    line-height: 1;
+
+    letter-spacing: -0.025em;
 }
 
 
-.territory-link {
-    display: inline-block;
+.visual-direction-cta-link {
+    display: inline-flex;
 
-    padding-bottom: 4px;
+    align-items: center;
+
+    gap: 12px;
+
+    padding-bottom: 5px;
 
     border-bottom:
         1px solid
-        rgba(17, 17, 17, 0.65);
+        rgba(17, 17, 17, 0.7);
 
-    font-size: 10px;
+    font-family: "Inter", sans-serif;
+
+    font-size: 11px;
+    font-weight: 400;
 
     line-height: 1;
 
-    letter-spacing: 0.11em;
+    letter-spacing: 0.13em;
 
     text-transform: uppercase;
 
-    transition: opacity 0.25s ease;
+    transition:
+        opacity 0.25s ease;
+}
+
+
+.visual-direction-cta-link span {
+    transition:
+        transform 0.3s ease;
 }
 
 
 @media (hover: hover) {
 
-    .territory-link:hover {
+    .visual-direction-cta-link:hover {
         opacity: 0.55;
     }
 
+    .visual-direction-cta-link:hover span {
+        transform: translateX(4px);
+    }
+
 }
-
-
 
 
 
@@ -1821,64 +1888,80 @@ body.film-modal-open {
 
 
 
-    /* TERRITORY */
+/* VISUAL DIRECTION */
 
-    .territory-section {
+.visual-direction-inner {
     padding:
-        60px
+        58px
         16px
-        100px;
-    }
+        54px;
+}
 
 
-    .territory-inner {
-    padding-top: 14px;
-    }
+.visual-direction-label {
+    margin-bottom: 42px;
+
+}
 
 
-    .territory-heading {
-    margin-top: 45px;
-    }
+.visual-direction-intro h2 {
+    font-size:
+        clamp(48px, 13vw, 68px);
+
+    line-height: 0.92;
+}
 
 
-    .territory-number {
-    margin-bottom: 22px;
+.visual-direction-gallery {
+    margin-top: 32px;
 
+    gap: 14px;
+}
+
+
+.visual-direction-image--01 {
+    width: 72%;
+}
+
+
+.visual-direction-image--02 {
+    width: 88%;
+}
+
+
+.visual-direction-image--03 {
+    width: 74%;
+}
+
+
+.visual-direction-note {
+    position: static;
+
+    margin-top: 18px;
+
+    font-size: 11px;
+}
+
+
+.visual-direction-cta-inner {
+    padding:
+        38px
+        16px
+        48px;
+}
+
+
+.visual-direction-cta-title {
+    margin-bottom: 30px;
+
+    font-size:
+        clamp(34px, 9vw, 48px);
+}
+
+
+.visual-direction-cta-link {
     font-size: 9px;
-    }
-
-
-    .section-label,
-    .selected-work-header h2,
-    .territory-heading h2 {
-        font-size: 16px;
-    }
-
-
-    .territory-content {
-    margin-top: 40px;
-    }
-
-
-    .territory-gallery {
-    width: min(72vw, 320px);
-    }
-
-
-    .territory-copy {
-    margin-top: 30px;
-    }
-
-
-    .territory-copy p {
-    font-size: 14px;
-    }
-
-
-    .territory-link {
-    font-size: 9px;
-    }
-
+}    
 
 
 
