@@ -41,7 +41,8 @@ button {
 
 .section-label,
 .selected-work-header h2,
-.visual-direction-label {
+.visual-direction-label,
+.about-label {
     font-family: "inter", sans-serif;
 
     font-size: clamp(20px, 1.8vw, 28px);
@@ -1655,6 +1656,213 @@ body.menu-open {
 
 
 
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-section {
+    background: #f1f0eb;
+    color: #111111;
+}
+
+
+.about-inner {
+    width: 100%;
+    max-width: 1500px;
+
+    margin: 0 auto;
+
+    padding:
+        clamp(90px, 9vw, 140px)
+        36px
+        0;
+}
+
+
+/* =========================================================
+   ABOUT LABEL
+========================================================= */
+
+.about-label {
+    margin-bottom:
+        clamp(75px, 8vw, 120px);
+}
+
+
+/* =========================================================
+   ABOUT TITLE
+========================================================= */
+
+.about-title {
+    width: min(82%, 1100px);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size:
+        clamp(64px, 7vw, 108px);
+
+    font-weight: 400;
+
+    line-height: 0.92;
+
+    letter-spacing: -0.035em;
+}
+
+
+/* =========================================================
+   ABOUT COPY
+========================================================= */
+
+.about-copy {
+    width: min(52%, 650px);
+
+    margin-top:
+        clamp(80px, 9vw, 135px);
+
+    margin-left: 28%;
+}
+
+
+.about-copy p {
+    font-size:
+        clamp(17px, 1.45vw, 22px);
+
+    font-weight: 400;
+
+    line-height: 1.55;
+}
+
+
+.about-copy p + p {
+    margin-top:
+        clamp(38px, 4vw, 58px);
+}
+
+
+/* =========================================================
+   ABOUT META
+========================================================= */
+
+.about-meta {
+    margin-top:
+        clamp(100px, 11vw, 165px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 38px;
+}
+
+
+.about-meta p {
+    font-size: 11px;
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   ABOUT DIVIDER
+========================================================= */
+
+.about-divider {
+    width: 100%;
+
+    margin-top:
+        clamp(75px, 8vw, 120px);
+
+    border-top:
+        1px solid
+        rgba(17, 17, 17, 0.25);
+}
+
+
+/* =========================================================
+   ABOUT CONTACT
+========================================================= */
+
+.about-contact {
+    padding:
+        clamp(55px, 6vw, 85px)
+        0
+        clamp(70px, 8vw, 120px);
+}
+
+
+.about-contact-title {
+    margin-bottom:
+        clamp(38px, 4vw, 54px);
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size:
+        clamp(44px, 4.7vw, 72px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: -0.03em;
+}
+
+
+.about-contact-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding-bottom: 5px;
+
+    border-bottom:
+        1px solid
+        rgba(17, 17, 17, 0.7);
+
+    font-size: 11px;
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: 0.13em;
+
+    text-transform: uppercase;
+
+    transition:
+        opacity 0.25s ease;
+}
+
+
+.about-contact-link span {
+    transition:
+        transform 0.3s ease;
+}
+
+
+@media (hover: hover) {
+
+    .about-contact-link:hover {
+        opacity: 0.55;
+    }
+
+
+    .about-contact-link:hover span {
+        transform: translateX(4px);
+    }
+
+}
+
+
+
+
 
 /* =========================================================
    FILM MODAL
@@ -1963,6 +2171,90 @@ body.film-modal-open {
     font-size: 9px;
 }    
 
+
+
+/* ABOUT */
+
+.about-inner {
+    padding:
+        70px
+        16px
+        0;
+}
+
+
+.about-label {
+    margin-bottom: 64px;
+}
+
+
+.about-title {
+    width: 100%;
+
+    font-size:
+        clamp(48px, 13vw, 66px);
+
+    line-height: 0.92;
+}
+
+
+.about-copy {
+    width: 68%;
+
+    margin-top: 78px;
+
+    margin-left: 26%;
+}
+
+
+.about-copy p {
+    font-size: 16px;
+
+    line-height: 1.55;
+}
+
+
+.about-copy p + p {
+    margin-top: 36px;
+}
+
+
+.about-meta {
+    margin-top: 90px;
+
+    gap: 34px;
+}
+
+
+.about-meta p {
+    font-size: 9px;
+}
+
+
+.about-divider {
+    margin-top: 74px;
+}
+
+
+.about-contact {
+    padding:
+        52px
+        0
+        64px;
+}
+
+
+.about-contact-title {
+    margin-bottom: 36px;
+
+    font-size:
+        clamp(38px, 10vw, 50px);
+}
+
+
+.about-contact-link {
+    font-size: 9px;
+}
 
 
 }
