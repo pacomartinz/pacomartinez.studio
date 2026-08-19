@@ -1460,7 +1460,7 @@ body.menu-open {
     font-family: "Cormorant Garamond", serif;
 
     font-size:
-        clamp(54px, 6.2vw, 94px);
+        clamp(46px, 5vw, 76px);
 
     font-weight: 400;
 
