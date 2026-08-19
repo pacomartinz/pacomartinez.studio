@@ -836,7 +836,7 @@ body.menu-open {
    PLAY / PAUSE
 ========================================================= */
 
-.showreel-toggle {
+.showreel-controls {
     position: absolute;
 
     right: 18px;
@@ -844,6 +844,30 @@ body.menu-open {
 
     z-index: 3;
 
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease;
+}
+
+
+.showreel-player.is-playing .showreel-controls {
+    opacity: 0.65;
+
+    pointer-events: auto;
+}
+
+
+.showreel-toggle,
+.showreel-fullscreen {
     border: 0;
 
     padding: 8px 10px;
@@ -856,33 +880,30 @@ body.menu-open {
 
     font-size: 9px;
 
+    line-height: 1;
+
     letter-spacing: 0.08em;
 
     cursor: pointer;
 
-    opacity: 0;
-
-    pointer-events: none;
-
     transition:
-        opacity 0.25s ease,
         background 0.25s ease;
 }
 
 
-.showreel-player.is-playing .showreel-toggle {
-    opacity: 0.65;
+@media (hover: hover) {
 
-    pointer-events: auto;
+    .showreel-controls:hover {
+        opacity: 1;
+    }
+
+
+    .showreel-toggle:hover,
+    .showreel-fullscreen:hover {
+        background: rgba(0, 0, 0, 0.55);
+    }
+
 }
-
-
-.showreel-toggle:hover {
-    opacity: 1;
-
-    background: rgba(0, 0, 0, 0.55);
-}
-
 
 /* =========================================================
    SELECTED WORK
@@ -1362,13 +1383,24 @@ body.menu-open {
     }
 
 
-    .showreel-toggle {
-        right: 10px;
+    .showreel-controls {
+    right: 10px;
 
-        bottom: 9px;
+    bottom: 9px;
 
-        font-size: 8px;
-    }
+    gap: 5px;
+}
+
+
+.showreel-toggle,
+.showreel-fullscreen {
+    padding: 7px 8px;
+
+    font-size: 8px;
+}
+
+
+
 
     /* SELECTED WORK */
 

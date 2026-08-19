@@ -166,7 +166,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("showreel-center-label");
 
     const showreelToggle =
-        document.getElementById("showreel-toggle");
+    document.getElementById("showreel-toggle");
+
+    const showreelFullscreen =
+        document.getElementById("showreel-fullscreen");
 
     const showreelDuration =
         document.getElementById("showreel-duration");
@@ -184,6 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
         showreelCover &&
         showreelCenterLabel &&
         showreelToggle &&
+        showreelFullscreen &&
         showreelDuration
     ) {
 
@@ -321,6 +325,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
         );
+
+
+                    /* =====================================================
+            FULLSCREEN
+            ===================================================== */
+
+            showreelFullscreen.addEventListener(
+                "click",
+                function () {
+
+                    showreelPlayer.requestFullscreen()
+
+                        .catch(function (error) {
+
+                            console.error(
+                                "Error activando pantalla completa:",
+                                error
+                            );
+
+                        });
+
+                }
+            );
 
 
 
