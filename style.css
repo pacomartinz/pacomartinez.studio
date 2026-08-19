@@ -1895,16 +1895,16 @@ body.menu-open {
     margin-top:
         clamp(65px, 7vw, 105px);
 
-    font-family: "Cormorant Garamond", serif;
+    font-family: "Inter", sans-serif;
 
     font-size:
-        clamp(46px, 4.8vw, 74px);
+        clamp(28px, 2.8vw, 42px);
 
     font-weight: 400;
 
-    line-height: 1.05;
+    line-height: 1.2;
 
-    letter-spacing: -0.03em;
+    letter-spacing: -0.025em;
 }
 
 
@@ -2425,9 +2425,9 @@ body.film-modal-open {
     margin-top: 58px;
 
     font-size:
-        clamp(38px, 10.5vw, 52px);
+        clamp(24px, 7vw, 32px);
 
-    line-height: 1.02;
+    line-height: 1.2;
 }
 
 
