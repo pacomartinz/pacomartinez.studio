@@ -1173,6 +1173,16 @@ body.menu-open {
 
 @media (max-width: 768px) {
 
+    .section-label,
+    .selected-work-header h2,
+    .visual-direction-label,
+    .about-label,
+    .contact-label {
+        font-size: 16px;
+    }
+
+
+
     .hero {
         min-height: 600px;
     }
@@ -1184,7 +1194,7 @@ body.menu-open {
 
 
     .hero-logo {
-        width: 60px;
+        width: 72px;
     }
 
 
@@ -1265,26 +1275,30 @@ body.menu-open {
 
         letter-spacing: -0.055em;
 
-        margin-bottom: 22px;
+        margin-bottom: 30px;
     }
 
 
     .hero-role {
-        font-size: 11px;
+        font-size: 13px;
+        line-height: 1.4;
 
         margin-bottom: 5px;
     }
 
 
     .hero-fields {
-        font-size: 9px;
+        font-size: 11px;
+        line-height: 1.5;
+    }
     }
 
 
     .hero-location {
-        font-size: 9px;
+        font-size: 10px;
+        line-height: 1.5;
 
-        margin-top: 4px;
+        margin-top: 7px;
     }
 
 
@@ -1415,7 +1429,7 @@ body.menu-open {
     gap: 7px;
 }
 
-}
+
 
 
 
