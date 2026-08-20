@@ -983,15 +983,17 @@ body.menu-open {
     align-items: center;
     justify-content: center;
 
-    background: rgba(0, 0, 0, 0.25);
+    background: transparent;
 
     color: #ffffff;
 
     cursor: pointer;
 
+    opacity: 0.9;
+
     transition:
-        background 0.25s ease,
-        opacity 0.25s ease;
+        opacity 0.25s ease,
+        transform 0.25s ease;
 }
 
 
@@ -1008,6 +1010,8 @@ body.menu-open {
 
     stroke-linecap: square;
     stroke-linejoin: miter;
+    filter:
+    drop-shadow(0 1px 3px rgba(0, 0, 0, 0.45));
 }
 
 
@@ -1019,8 +1023,10 @@ body.menu-open {
 
 
     .showreel-fullscreen:hover {
-        background: rgba(0, 0, 0, 0.55);
-    }
+    opacity: 1;
+
+    transform: scale(1.08);
+}
 
 }
 
