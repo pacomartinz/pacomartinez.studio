@@ -244,6 +244,9 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function () {
 
+                showreelCover.classList.add("is-loading");
+                showreelCover.disabled = true;
+
                 showreelCenterLabel.textContent =
                     "LOADING";
 
@@ -256,6 +259,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             "Error reproduciendo Vimeo:",
                             error
                         );
+
+                        showreelCover.classList.remove("is-loading");
+                        showreelCover.disabled = false;
 
                         showreelCenterLabel.textContent =
                             "PLAY SHOWREEL";

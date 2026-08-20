@@ -774,6 +774,32 @@ body.menu-open {
     transform: translateX(2px);
 }
 
+.showreel-cover.is-loading .showreel-play-icon {
+    display: none;
+}
+
+
+.showreel-cover.is-loading .showreel-play-circle::after {
+    content: "";
+
+    width: 14px;
+    height: 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation: showreel-loading 0.7s linear infinite;
+}
+
+
+@keyframes showreel-loading {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 
 .showreel-center-label {
     display: none;
