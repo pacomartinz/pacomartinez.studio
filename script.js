@@ -165,8 +165,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const showreelCenterLabel =
         document.getElementById("showreel-center-label");
 
-    const showreelToggle =
-    document.getElementById("showreel-toggle");
+    const showreelClickToggle =
+        document.getElementById("showreel-click-toggle");
 
     const showreelFullscreen =
         document.getElementById("showreel-fullscreen");
@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
         showreelContainer &&
         showreelCover &&
         showreelCenterLabel &&
-        showreelToggle &&
+        showreelClickToggle &&
         showreelFullscreen &&
         showreelDuration
     ) {
@@ -271,7 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
            REPRODUCIENDO
         ===================================================== */
 
-        showreelPlayer.on(
+            showreelPlayer.on(
             "playing",
             function () {
 
@@ -279,12 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     "is-playing"
                 );
 
-
-                showreelToggle.textContent =
-                    "PAUSE";
-
-
-                showreelToggle.setAttribute(
+                showreelClickToggle.setAttribute(
                     "aria-label",
                     "Pausar showreel"
                 );
@@ -298,7 +293,7 @@ document.addEventListener("DOMContentLoaded", function () {
            PLAY / PAUSE
         ===================================================== */
 
-        showreelToggle.addEventListener(
+        showreelClickToggle.addEventListener(
             "click",
             function () {
 
@@ -355,21 +350,17 @@ document.addEventListener("DOMContentLoaded", function () {
            PAUSE
         ===================================================== */
 
-        showreelPlayer.on(
-            "pause",
-            function () {
+                showreelPlayer.on(
+                "pause",
+                function () {
 
-                showreelToggle.textContent =
-                    "PLAY";
+                    showreelClickToggle.setAttribute(
+                        "aria-label",
+                        "Reproducir showreel"
+                    );
 
-
-                showreelToggle.setAttribute(
-                    "aria-label",
-                    "Reproducir showreel"
-                );
-
-            }
-        );
+                }
+            );
 
 
 

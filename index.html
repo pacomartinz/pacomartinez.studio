@@ -229,32 +229,36 @@
                 </button>
 
 
-                <!-- PLAY / PAUSE -->
+                <!-- CLICK PARA PLAY / PAUSE -->
 
-                <div class="showreel-controls">
+            <button
+                class="showreel-click-toggle"
+                id="showreel-click-toggle"
+                type="button"
+                aria-label="Pausar showreel"
+            ></button>
 
-                    <button
-                        class="showreel-toggle"
-                        id="showreel-toggle"
-                        type="button"
-                        aria-label="Pausar showreel"
+
+            <!-- FULLSCREEN -->
+
+            <div class="showreel-controls">
+
+                <button
+                    class="showreel-fullscreen"
+                    id="showreel-fullscreen"
+                    type="button"
+                    aria-label="Ver showreel a pantalla completa"
+                >
+                    <svg
+                        class="showreel-fullscreen-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
                     >
-                        PAUSE
-                    </button>
+                        <path d="M9 4H4V9 M15 4H20V9 M20 15V20H15 M4 15V20H9"></path>
+                    </svg>
+                </button>
 
-
-                    <button
-                        class="showreel-fullscreen"
-                        id="showreel-fullscreen"
-                        type="button"
-                        aria-label="Ver showreel a pantalla completa"
-                    >
-                        FULLSCREEN
-                    </button>
-
-                </div>
-
-            </div>
+</div>
 
         </section>
 

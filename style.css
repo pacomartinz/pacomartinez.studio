@@ -597,7 +597,7 @@ body.menu-open {
 
     max-width: 1500px;
 
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4096 / 2160;
 
     margin: 0 auto;
 
@@ -776,6 +776,8 @@ body.menu-open {
 
 
 .showreel-center-label {
+    display: none;
+
     font-size: 10px;
 
     font-weight: 500;
@@ -830,6 +832,82 @@ body.menu-open {
         visibility 0s linear 0.4s;
 }
 
+/* =========================================================
+   SHOWREEL CLICK PLAY / PAUSE
+========================================================= */
+
+.showreel-click-toggle {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    z-index: 1;
+
+    display: none;
+}
+
+
+.showreel-player.is-playing .showreel-click-toggle {
+    display: block;
+}
+
+
+/* PLAY CUANDO EL SHOWREEL ESTÁ PAUSADO */
+
+.showreel-click-toggle[aria-label="Reproducir showreel"]::before {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 64px;
+    height: 64px;
+
+    transform: translate(-50%, -50%);
+
+    border: 1px solid rgba(255, 255, 255, 0.85);
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.08);
+
+    pointer-events: none;
+}
+
+
+.showreel-click-toggle[aria-label="Reproducir showreel"]::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 0;
+    height: 0;
+
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 11px solid #ffffff;
+
+    transform: translate(-35%, -50%);
+
+    pointer-events: none;
+}
+
 
 
 /* =========================================================
@@ -866,28 +944,44 @@ body.menu-open {
 }
 
 
-.showreel-toggle,
 .showreel-fullscreen {
+    width: 36px;
+    height: 36px;
+
+    padding: 8px;
+
     border: 0;
 
-    padding: 8px 10px;
+    display: flex;
 
-    background: rgba(0, 0, 0, 0.35);
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.25);
 
     color: #ffffff;
-
-    font-family: "Inter", sans-serif;
-
-    font-size: 9px;
-
-    line-height: 1;
-
-    letter-spacing: 0.08em;
 
     cursor: pointer;
 
     transition:
-        background 0.25s ease;
+        background 0.25s ease,
+        opacity 0.25s ease;
+}
+
+
+.showreel-fullscreen-icon {
+    width: 18px;
+    height: 18px;
+
+    display: block;
+
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 1.5;
+
+    stroke-linecap: square;
+    stroke-linejoin: miter;
 }
 
 
@@ -898,7 +992,6 @@ body.menu-open {
     }
 
 
-    .showreel-toggle:hover,
     .showreel-fullscreen:hover {
         background: rgba(0, 0, 0, 0.55);
     }
@@ -939,7 +1032,7 @@ body.menu-open {
     align-items: baseline;
     justify-content: space-between;
 
-    margin-bottom: 64px;
+    margin-bottom: 40px;
 }
 
 
@@ -1101,7 +1194,7 @@ body.menu-open {
 .work-project-bottom {
     display: flex;
 
-    align-items: flex-end;
+    align-items: flex-start;
 
     justify-content: space-between;
 
@@ -1119,6 +1212,11 @@ body.menu-open {
     line-height: 1.4;
 
     margin-bottom: 4px;
+}
+
+.work-info h3:first-child {
+    font-size: 14px;
+    font-weight: 450;
 }
 
 
@@ -1375,6 +1473,11 @@ body.menu-open {
         height: 52px;
     }
 
+    .showreel-click-toggle[aria-label="Reproducir showreel"]::before {
+    width: 52px;
+    height: 52px;
+}
+
 
     .showreel-center-label {
         font-size: 8px;
@@ -1392,11 +1495,17 @@ body.menu-open {
 }
 
 
-.showreel-toggle,
 .showreel-fullscreen {
-    padding: 7px 8px;
+    width: 32px;
+    height: 32px;
 
-    font-size: 8px;
+    padding: 7px;
+}
+
+
+.showreel-fullscreen-icon {
+    width: 16px;
+    height: 16px;
 }
 
 
@@ -1413,7 +1522,7 @@ body.menu-open {
 
 
 .selected-work-header {
-    margin-bottom: 46px;
+    margin-bottom: 30px;
 }
 
 
@@ -1581,7 +1690,7 @@ body.menu-open {
     font-family: "Cormorant Garamond", serif;
 
     font-size:
-        clamp(46px, 5vw, 76px);
+        clamp(40px, 4.3vw, 64px);
 
     font-weight: 400;
 
@@ -2384,7 +2493,7 @@ body.film-modal-open {
 
 .visual-direction-intro h2 {
     font-size:
-        clamp(48px, 13vw, 68px);
+        clamp(40px, 10.5vw, 56px);
 
     line-height: 0.92;
 }
