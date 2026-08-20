@@ -2008,7 +2008,7 @@ body.menu-open {
     width: 100%;
 
     margin-top:
-        clamp(75px, 8vw, 120px);
+        clamp(50px, 5vw, 80px);
 
     border-top:
         1px solid
@@ -2112,7 +2112,7 @@ body.menu-open {
     margin: 0 auto;
 
     padding:
-        clamp(80px, 8vw, 125px)
+        clamp(50px, 5vw, 80px)
         36px
         42px;
 }
@@ -2610,7 +2610,7 @@ body.film-modal-open {
 
 
 .about-divider {
-    margin-top: 74px;
+    margin-top: 50px;
 }
 
 
@@ -2642,7 +2642,7 @@ body.film-modal-open {
 
 .contact-inner {
     padding:
-        70px
+        45px
         16px
         30px;
 }
@@ -2652,7 +2652,7 @@ body.film-modal-open {
     margin-top: 58px;
 
     font-size:
-        clamp(24px, 7vw, 32px);
+        clamp(20px, 5.5vw, 26px);
 
     line-height: 1.2;
 }
