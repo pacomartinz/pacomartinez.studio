@@ -2598,7 +2598,7 @@ body.film-modal-open {
 
 
 .about-meta {
-    margin-top: 90px;
+    margin-top: 50px;
 
     gap: 34px;
 }
@@ -2642,7 +2642,7 @@ body.film-modal-open {
 
 .contact-inner {
     padding:
-        45px
+        70px
         16px
         30px;
 }
