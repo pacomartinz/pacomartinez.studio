@@ -174,6 +174,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const showreelDuration =
         document.getElementById("showreel-duration");
 
+    const showreelProgressFill =
+    document.getElementById("showreel-progress-fill");
+
+    const showreelSeek =
+    document.getElementById("showreel-seek");
+
+    let showreelSeeking = false;
+
 
 
     /* =========================================================
@@ -188,7 +196,9 @@ document.addEventListener("DOMContentLoaded", function () {
         showreelCenterLabel &&
         showreelClickToggle &&
         showreelFullscreen &&
-        showreelDuration
+        showreelDuration &&
+        showreelProgressFill &&
+        showreelSeek
     ) {
 
         showreelPlayer =
@@ -278,20 +288,23 @@ document.addEventListener("DOMContentLoaded", function () {
         ===================================================== */
 
             showreelPlayer.on(
-            "playing",
-            function () {
+    "playing",
+    function () {
 
-                showreelContainer.classList.add(
-                    "is-playing"
-                );
+        showreelCover.classList.remove("is-loading");
+        showreelCover.disabled = false;
 
-                showreelClickToggle.setAttribute(
-                    "aria-label",
-                    "Pausar showreel"
-                );
-
-            }
+        showreelContainer.classList.add(
+            "is-playing"
         );
+
+        showreelClickToggle.setAttribute(
+            "aria-label",
+            "Pausar showreel"
+        );
+
+    }
+);
 
 
 
@@ -326,6 +339,88 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
         );
+
+
+
+
+        /* =====================================================
+   PROGRESS / SEEK
+===================================================== */
+
+showreelPlayer.on(
+    "timeupdate",
+    function (data) {
+
+        if (showreelSeeking) {
+            return;
+        }
+
+        showreelProgressFill.style.transform =
+            `scaleX(${data.percent})`;
+
+        showreelSeek.value =
+            Math.round(data.percent * 1000);
+
+    }
+);
+
+
+showreelSeek.addEventListener(
+    "input",
+    function () {
+
+        showreelSeeking = true;
+
+        const percent =
+            Number(showreelSeek.value) / 1000;
+
+        showreelProgressFill.style.transform =
+            `scaleX(${percent})`;
+
+    }
+);
+
+
+showreelSeek.addEventListener(
+    "change",
+    function () {
+
+        const percent =
+            Number(showreelSeek.value) / 1000;
+
+        showreelPlayer.getDuration()
+
+            .then(function (duration) {
+
+                return showreelPlayer.setCurrentTime(
+                    duration * percent
+                );
+
+            })
+
+            .then(function () {
+
+                showreelSeeking = false;
+
+            })
+
+            .catch(function (error) {
+
+                showreelSeeking = false;
+
+                console.error(
+                    "Error cambiando posición del showreel:",
+                    error
+                );
+
+            });
+
+    }
+);
+
+
+
+
 
 
                     /* =====================================================
@@ -385,6 +480,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 showreelCenterLabel.textContent =
                     "PLAY AGAIN";
+
+                
+                showreelSeeking = false;
+
+                showreelProgressFill.style.transform =
+                    "scaleX(0)";
+
+                showreelSeek.value = 0;
 
 
                 showreelPlayer.setCurrentTime(0);

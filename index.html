@@ -241,26 +241,51 @@
 
             <!-- FULLSCREEN -->
 
-            <div class="showreel-controls">
+<div class="showreel-controls">
 
-                <button
-                    class="showreel-fullscreen"
-                    id="showreel-fullscreen"
-                    type="button"
-                    aria-label="Ver showreel a pantalla completa"
-                >
-                    <svg
-                        class="showreel-fullscreen-icon"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                    >
-                        <path d="M9 4H4V9 M15 4H20V9 M20 15V20H15 M4 15V20H9"></path>
-                    </svg>
-                </button>
+    <button
+        class="showreel-fullscreen"
+        id="showreel-fullscreen"
+        type="button"
+        aria-label="Ver showreel a pantalla completa"
+    >
+        <svg
+            class="showreel-fullscreen-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+        >
+            <path d="M9 4H4V9 M15 4H20V9 M20 15V20H15 M4 15V20H9"></path>
+        </svg>
+    </button>
 
 </div>
 
-        </section>
+
+<!-- PROGRESS / SEEK -->
+
+<div class="showreel-progress">
+
+    <span
+        class="showreel-progress-fill"
+        id="showreel-progress-fill"
+    ></span>
+
+    <input
+        class="showreel-seek"
+        id="showreel-seek"
+        type="range"
+        min="0"
+        max="1000"
+        value="0"
+        step="1"
+        aria-label="Posición del showreel"
+    >
+
+</div>
+
+</div>
+
+</section>
 
 
 
