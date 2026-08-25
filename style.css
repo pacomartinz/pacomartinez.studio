@@ -157,7 +157,7 @@ button {
 ========================================================= */
 
 .hero-header {
-    position: absolute;
+    position: fixed;
 
     top: 0;
     left: 0;
@@ -169,10 +169,31 @@ button {
     display: flex;
 
     align-items: center;
-
     justify-content: space-between;
 
-    z-index: 2;
+    z-index: 9000;
+
+    background: transparent;
+    color: #ffffff;
+
+    transform: translateY(0);
+
+    transition:
+        transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+        color 0.25s ease;
+
+    will-change: transform;
+}
+
+
+.hero-header.is-hidden {
+    transform: translateY(calc(-100% - 10px));
+    pointer-events: none;
+}
+
+
+.hero-header.is-light {
+    color: #111111;
 }
 
 
@@ -257,6 +278,7 @@ button {
     gap: 6px;
 
     background: none;
+    color: inherit;
 
     cursor: pointer;
 }
@@ -268,7 +290,10 @@ button {
     width: 100%;
     height: 1px;
 
-    background: #ffffff;
+    background: currentColor;
+
+    transition:
+        background-color 0.25s ease;
 }
 
 

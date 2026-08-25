@@ -25,6 +25,194 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
+        /* =========================================================
+       HEADER FIJO / AUTO HIDE / COLOR
+    ========================================================= */
+
+    const heroHeader =
+        document.querySelector(".hero-header");
+
+    const lightHeaderSections = [
+        document.getElementById("showreel"),
+        document.getElementById("selected-work"),
+        document.getElementById("about"),
+        document.getElementById("contact")
+    ].filter(Boolean);
+
+
+    let lastHeaderScrollY =
+        Math.max(0, window.scrollY);
+
+    let headerScrollDistance = 0;
+
+    let headerTicking = false;
+
+
+
+    /* =========================================================
+       COLOR DEL HEADER
+    ========================================================= */
+
+    function updateHeaderColor() {
+
+        if (!heroHeader) {
+            return;
+        }
+
+        const probeY =
+            Math.min(
+                heroHeader.offsetHeight / 2,
+                40
+            );
+
+        const isLightSection =
+            lightHeaderSections.some(function (section) {
+
+                const rect =
+                    section.getBoundingClientRect();
+
+                return (
+                    rect.top <= probeY &&
+                    rect.bottom > probeY
+                );
+
+            });
+
+        heroHeader.classList.toggle(
+            "is-light",
+            isLightSection
+        );
+
+    }
+
+
+
+    /* =========================================================
+       MOSTRAR / OCULTAR HEADER
+    ========================================================= */
+
+    function updateHeaderVisibility() {
+
+        if (!heroHeader) {
+            return;
+        }
+
+        const currentScrollY =
+            Math.max(0, window.scrollY);
+
+        const scrollDelta =
+            currentScrollY - lastHeaderScrollY;
+
+
+        if (currentScrollY <= 80) {
+
+            heroHeader.classList.remove(
+                "is-hidden"
+            );
+
+            headerScrollDistance = 0;
+
+        } else if (
+            !document.body.classList.contains("menu-open") &&
+            Math.abs(scrollDelta) >= 2
+        ) {
+
+            if (scrollDelta > 0) {
+
+                if (headerScrollDistance < 0) {
+                    headerScrollDistance = 0;
+                }
+
+                headerScrollDistance +=
+                    scrollDelta;
+
+                if (headerScrollDistance >= 55) {
+
+                    heroHeader.classList.add(
+                        "is-hidden"
+                    );
+
+                    headerScrollDistance = 0;
+
+                }
+
+            } else {
+
+                if (headerScrollDistance > 0) {
+                    headerScrollDistance = 0;
+                }
+
+                headerScrollDistance +=
+                    scrollDelta;
+
+                if (headerScrollDistance <= -15) {
+
+                    heroHeader.classList.remove(
+                        "is-hidden"
+                    );
+
+                    headerScrollDistance = 0;
+
+                }
+
+            }
+
+        }
+
+        lastHeaderScrollY =
+            currentScrollY;
+
+    }
+
+
+
+    /* =========================================================
+       ACTUALIZAR HEADER
+    ========================================================= */
+
+    function updateHeader() {
+
+        updateHeaderVisibility();
+        updateHeaderColor();
+
+        headerTicking = false;
+
+    }
+
+
+    function requestHeaderUpdate() {
+
+        if (headerTicking) {
+            return;
+        }
+
+        headerTicking = true;
+
+        window.requestAnimationFrame(
+            updateHeader
+        );
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        requestHeaderUpdate,
+        { passive: true }
+    );
+
+
+    window.addEventListener(
+        "resize",
+        requestHeaderUpdate
+    );
+
+
+    updateHeader();
+
+
+
     /* =========================================================
        ABRIR MENU
     ========================================================= */
