@@ -2195,6 +2195,15 @@ body.menu-open {
         clamp(38px, 4vw, 58px);
 }
 
+.about-signature {
+    display: block;
+
+    width: clamp(140px, 14vw, 210px);
+    height: auto;
+
+    margin-top: clamp(55px, 4vw, 55px);
+}
+
 
 /* =========================================================
    ABOUT META
@@ -2208,7 +2217,7 @@ body.menu-open {
 
     flex-direction: column;
 
-    gap: 38px;
+    gap: 20px;
 }
 
 
@@ -2821,11 +2830,16 @@ body.film-modal-open {
     margin-top: 36px;
 }
 
+.about-signature {
+    width: 135px;
+    margin-top: 45px;
+}
+
 
 .about-meta {
     margin-top: 50px;
 
-    gap: 34px;
+    gap: 18px;
 }
 
 
