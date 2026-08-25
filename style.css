@@ -2831,7 +2831,7 @@ body.film-modal-open {
 }
 
 .about-signature {
-    width: 135px;
+    width: 70px;
     margin-top: 45px;
 }
 
@@ -2839,7 +2839,7 @@ body.film-modal-open {
 .about-meta {
     margin-top: 50px;
 
-    gap: 18px;
+    gap: 20px;
 }
 
 
